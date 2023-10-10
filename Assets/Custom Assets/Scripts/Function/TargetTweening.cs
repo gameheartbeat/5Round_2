@@ -54,6 +54,33 @@ public class TargetTweening : MonoBehaviour
     }
 
     //------------------------------
+    public static void TranslateGameObject(Transform target_Tf, Transform last_Tf,
+        UnityEvent onCompleted, float duration = 0.7f)
+    {
+        Vector3 lastPos = last_Tf.position;
+        Quaternion lastRot = last_Tf.rotation;
+
+        // Create a sequence of tweens to move and rotate the target_Tf
+        Sequence sequence = DOTween.Sequence();
+
+        // Add a move tween from startPos to lastPos
+        sequence.Append(target_Tf.DOMove(lastPos, duration)); // You can adjust the duration
+
+        // Add a rotate tween from startRot to lastRot
+        sequence.Join(target_Tf.DORotateQuaternion(lastRot, duration)); // You can adjust the duration
+
+        // Add a callback when the tween is completed
+        sequence.OnComplete(() =>
+        {
+            // Call the UnityEvent when the tween is completed
+            onCompleted.Invoke();
+        });
+
+        // Start the tween sequence
+        sequence.Play();
+    }
+
+    //------------------------------
     public static void DoScaleTargetObject(Transform target_Tf, Vector3 lastScale, UnityEvent unityEvent,
         float duration = 1f)
     {
@@ -61,13 +88,5 @@ public class TargetTweening : MonoBehaviour
         target_Tf.DOScale(lastScale, duration)
             .OnComplete(() => unityEvent.Invoke());
     }
-
-    //------------------------------
-    //public static void DoBlur(MobilePostProcessing blurEffect_Cp_pr, float lastBlurAmount,
-    //    float duration)
-    //{
-    //    DOTween.To(() => blurEffect_Cp_pr.BlurAmount, x => blurEffect_Cp_pr.BlurAmount = x, lastBlurAmount,
-    //        duration);
-    //}
 
 }

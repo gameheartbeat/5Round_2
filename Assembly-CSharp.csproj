@@ -144,6 +144,11 @@
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark01.cs" />
     <Compile Include="Assets\Custom Assets\Scripts\Function\HoldingHandler.cs" />
     <Compile Include="Assets\DOTween\Modules\DOTweenModuleEPOOutline.cs" />
+    <Compile Include="Assets\Custom Assets\Scripts\Gameplay Scene\Phases Scene\Controllers\Controller_StartPhase.cs" />
+    <Compile Include="Assets\Custom Assets\Scripts\Gameplay Scene\Phases Scene\UIs\UI_StartPhase.cs" />
+    <Compile Include="Assets\Custom Assets\Scripts\Gameplay Scene\Phases Scene\Controllers\Controller_StrPhase.cs" />
+    <Compile Include="Assets\Custom Assets\Scripts\Gameplay Scene\Phases Scene\UIs\UI_StrPhase.cs" />
+    <Compile Include="Assets\Custom Assets\Scripts\Gameplay Scene\Phases Scene\Player_Phases.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\ReadOnlyAttribute\README.txt" />

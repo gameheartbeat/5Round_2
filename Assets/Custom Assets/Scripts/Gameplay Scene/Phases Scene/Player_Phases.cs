@@ -1,9 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
-public class UI_Phases : MonoBehaviour
+public class Player_Phases : MonoBehaviour
 {
 
     //////////////////////////////////////////////////////////////////////
@@ -15,7 +14,7 @@ public class UI_Phases : MonoBehaviour
 
     public enum GameState_En
     {
-        Nothing, Inited, Playing, WillFinish
+        Nothing, Inited, Playing, WillFinish,
     }
 
     #endregion
@@ -28,10 +27,15 @@ public class UI_Phases : MonoBehaviour
     #region Fields
 
     //-------------------------------------------------- serialize fields
+    [SerializeField]
+    public bool isCreator, isLocalPlayer, isCom;
 
     //-------------------------------------------------- public fields
     [ReadOnly]
     public List<GameState_En> gameStates = new List<GameState_En>();
+
+    [ReadOnly]
+    public int playerID;
 
     //-------------------------------------------------- private fields
 

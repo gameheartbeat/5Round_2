@@ -434,6 +434,17 @@ public class DataManager_Gameplay : MonoBehaviour
     }
 
     //--------------------------------------------------
+    public void GenRandUnitCardsData_Phases()
+    {
+        for (int i = 0; i < 2; i++)
+        {
+            GenerateRandomPlayerUnitCardsData(i);
+            GenerateRandomPlayerBattleUnitCardsData(i);
+            GenerateRandomPlayerStandUnitCardsData(i);
+        }
+    }
+
+    //--------------------------------------------------
     void GenerateRandomPlayerUnitCardsData(int playerID_pr)
     {
         int unitsCount_pr = DataManager_Gameplay.maxPartyUnitsCount;

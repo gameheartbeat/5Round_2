@@ -1,9 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
-public class UI_Phases : MonoBehaviour
+public class UI_StartPhase : MonoBehaviour
 {
 
     //////////////////////////////////////////////////////////////////////
@@ -15,7 +14,7 @@ public class UI_Phases : MonoBehaviour
 
     public enum GameState_En
     {
-        Nothing, Inited, Playing, WillFinish
+        Nothing, Inited, Playing, WillFinish,
     }
 
     #endregion

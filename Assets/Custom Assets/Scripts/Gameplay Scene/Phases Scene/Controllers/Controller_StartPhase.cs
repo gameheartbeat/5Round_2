@@ -1,8 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
-public class Controller_Phases : MonoBehaviour
+public class Controller_StartPhase : MonoBehaviour
 {
 
     //////////////////////////////////////////////////////////////////////
@@ -15,9 +16,9 @@ public class Controller_Phases : MonoBehaviour
     public enum GameState_En
     {
         Nothing, Inited, Playing, WillFinish,
-        InitComponentsFinished,
-        StartPhaseStarted, StartPhaseFinished,
-        StrPhaseStarted, StrPhaseFinished,
+        PhaseStarted, PhaseFinished,
+        APMarkerMoved, TurnMarkerMoved,
+        CamMovedToGameBLookPoint,
     }
 
     #endregion
@@ -31,34 +32,54 @@ public class Controller_Phases : MonoBehaviour
 
     //-------------------------------------------------- serialize fields
     [SerializeField]
-    Background bgd_Cp;
+    UI_StartPhase startUI_Cp;
 
     [SerializeField]
-    public Controller_StartPhase startController_Cp;
+    public Transform p1CamPoint_Tf, p2CamPoint_Tf;
 
     [SerializeField]
-    public Controller_StrPhase strController_Cp;
+    Transform p1APPointsGroup_Tf, p2APPointsGroup_Tf;
 
     [SerializeField]
-    public Transform cam_Tf;
+    Transform turnPointsGroup_Tf;
+
+    [SerializeField]
+    Transform p1APMarker_Tf, p2APMarker_Tf;
+
+    [SerializeField]
+    Transform turnMarker_Tf;
+
+    [SerializeField]
+    float delayAfterAPMarkerMoved = 1f;
+
+    [SerializeField]
+    float delayAfterTurnMarkerMoved = 1f;
 
     //-------------------------------------------------- public fields
     [ReadOnly]
     public List<GameState_En> gameStates = new List<GameState_En>();
 
     [ReadOnly]
-    public DataManager_Gameplay dataManager_Cp;
+    public List<Transform> p1APPoint_Tfs = new List<Transform>();
 
     [ReadOnly]
-    public int localPlayerID, otherPlayerID, comPlayerID;
+    public List<Transform> p2APPoint_Tfs = new List<Transform>();
 
     [ReadOnly]
-    public List<Player_Phases> player_Cps = new List<Player_Phases>();
+    public List<Transform> turnPoint_Tfs = new List<Transform>();
 
     [ReadOnly]
-    public Player_Phases localPlayer_Cp, otherPlayer_Cp, comPlayer_Cp;
+    public List<int> playerAPs = new List<int> { 0, 0 };
+
+    [ReadOnly]
+    public int turnIndex;
 
     //-------------------------------------------------- private fields
+    Controller_Phases controller_Cp;
+
+    Transform cam_Tf;
+
+    int localPlayerID;
 
     #endregion
 
@@ -91,7 +112,7 @@ public class Controller_Phases : MonoBehaviour
     //-------------------------------------------------- Start is called before the first frame update
     void Start()
     {
-        Init();
+
     }
 
     //-------------------------------------------------- Update is called once per frame
@@ -194,177 +215,155 @@ public class Controller_Phases : MonoBehaviour
     //--------------------------------------------------
     public void Init()
     {
-        StartCoroutine(Corou_Init());
-    }
-
-    IEnumerator Corou_Init()
-    {
         AddMainGameState(GameState_En.Nothing);
 
         //
-        bgd_Cp.Init();
+        SetComponents();
 
-        //
-        InitDataManager();
-
-        //
-        InitPlayerComponentsAndIDs();
-
-        //
         InitComponents();
-        yield return new WaitUntil(() => ExistGameStates(GameState_En.InitComponentsFinished));
-        RemoveGameStates(GameState_En.InitComponentsFinished);
+
+        SetVariables();
 
         //
         mainGameState = GameState_En.Inited;
-
-        ReadyToPlay();
     }
 
     //--------------------------------------------------
-    void InitDataManager()
+    void SetComponents()
     {
-        dataManager_Cp = FindObjectOfType<DataManager_Gameplay>();
+        controller_Cp = GameObject.FindWithTag("GameController").GetComponent<Controller_Phases>();
 
-        if (!dataManager_Cp)
-        {
-            dataManager_Cp = new GameObject("DataManager").AddComponent<DataManager_Gameplay>();
-            dataManager_Cp.Init();
-            dataManager_Cp.LoadGameplayData();
-            dataManager_Cp.GenRandUnitCardsData_Phases();
-        }
-    }
-
-    //--------------------------------------------------
-    void InitPlayerComponentsAndIDs()
-    {
-        //
-        Player_Phases[] player_Cps_tp = FindObjectsOfType<Player_Phases>();
-        for (int i = 0; i < player_Cps_tp.Length; i++)
-        {
-            if (player_Cps_tp[i].isCreator)
-            {
-                player_Cps.Add(player_Cps_tp[i]);
-
-                int otherPlayerID_tp = i == 0 ? 1 : 0;
-                player_Cps.Add(player_Cps_tp[otherPlayerID_tp]);
-
-                break;
-            }
-        }
-
-        //
-        for (int i = 0; i < player_Cps.Count; i++)
-        {
-            player_Cps[i].playerID = i;
-
-            if (player_Cps[i].isLocalPlayer)
-            {
-                localPlayerID = i;
-                localPlayer_Cp = player_Cps[i];
-            }
-            else
-            {
-                otherPlayerID = i;
-                otherPlayer_Cp = player_Cps[i];
-            }
-
-            if (player_Cps[i].isCom)
-            {
-                comPlayerID = i;
-                comPlayer_Cp = player_Cps[i];
-            }
-        }
+        cam_Tf = controller_Cp.cam_Tf;
     }
 
     //--------------------------------------------------
     void InitComponents()
     {
-        StartCoroutine(Corou_InitComponents());
+        startUI_Cp.Init();
     }
 
-    IEnumerator Corou_InitComponents()
+    //--------------------------------------------------
+    void SetVariables()
     {
-        startController_Cp.Init();
-        yield return new WaitUntil(() => startController_Cp.mainGameState
-            == Controller_StartPhase.GameState_En.Inited);
-
-        strController_Cp.Init();
-        yield return new WaitUntil(() => strController_Cp.mainGameState
-            == Controller_StrPhase.GameState_En.Inited);
+        //
+        localPlayerID = controller_Cp.localPlayerID;
 
         //
-        AddGameStates(GameState_En.InitComponentsFinished);
+        for (int i = 0; i < p1APPointsGroup_Tf.childCount; i++)
+        {
+            p1APPoint_Tfs.Add(p1APPointsGroup_Tf.GetChild(i));
+        }
+
+        for (int i = 0; i < p2APPointsGroup_Tf.childCount; i++)
+        {
+            p2APPoint_Tfs.Add(p2APPointsGroup_Tf.GetChild(i));
+        }
+
+        for (int i = 0; i < turnPointsGroup_Tf.childCount; i++)
+        {
+            turnPoint_Tfs.Add(turnPointsGroup_Tf.GetChild(i));
+        }
     }
 
     #endregion
 
-    //-------------------------------------------------- ReadyToPlay
-    void ReadyToPlay()
+    //--------------------------------------------------
+    public void PlayPhase()
     {
-        StartCoroutine(Corou_ReadyToPlay());
+        StartCoroutine(Corou_PlayPhase());
     }
 
-    IEnumerator Corou_ReadyToPlay()
+    IEnumerator Corou_PlayPhase()
     {
-        //
-        bgd_Cp.curtain_Cp.CurtainUp();
-        yield return new WaitUntil(() => bgd_Cp.curtain_Cp.mainGameState
-            == Curtain.GameState_En.CurtainUpFinished);
+        mainGameState = GameState_En.PhaseStarted;
 
         //
-        Play();
-    }
-
-    //-------------------------------------------------- Play
-    public void Play()
-    {
-        StartCoroutine(Corou_Play());
-    }
-
-    IEnumerator Corou_Play()
-    {
-        mainGameState = GameState_En.Playing;
+        MoveCamToGameBLookPoint();
+        yield return new WaitUntil(() => ExistGameStates(GameState_En.CamMovedToGameBLookPoint));
+        RemoveGameStates(GameState_En.CamMovedToGameBLookPoint);
 
         //
-        PlayStartPhase();
-        yield return new WaitUntil(() => mainGameState == GameState_En.StartPhaseFinished);
+        UpAPs();
+        yield return new WaitUntil(() => GetExistGameStatesCount(GameState_En.APMarkerMoved) == 2);
+        RemoveGameStates(GameState_En.APMarkerMoved);
+
+        yield return new WaitForSeconds(delayAfterAPMarkerMoved);
+
+        UpTurnIndex();
+        yield return new WaitUntil(() => ExistGameStates(GameState_En.TurnMarkerMoved));
+        RemoveGameStates(GameState_En.TurnMarkerMoved);
+
+        yield return new WaitForSeconds(delayAfterTurnMarkerMoved);
 
         //
-        PlayStrPhase();
-        yield return new WaitUntil(() => mainGameState == GameState_En.StrPhaseFinished);
-    }
-
-    //-------------------------------------------------- 
-    void PlayStartPhase()
-    {
-        StartCoroutine(Corou_PlayStartPhase());
-    }
-
-    IEnumerator Corou_PlayStartPhase()
-    {
-        startController_Cp.PlayPhase();
-        yield return new WaitUntil(() => startController_Cp.mainGameState
-            == Controller_StartPhase.GameState_En.PhaseFinished);
-
-        //
-        mainGameState = GameState_En.StartPhaseFinished;
+        mainGameState = GameState_En.PhaseFinished;
     }
 
     //--------------------------------------------------
-    void PlayStrPhase()
+    public void MoveCamToGameBLookPoint()
     {
-        StartCoroutine(Corou_PlayStrPhase());
+        UnityEvent unityEvent = new UnityEvent();
+        unityEvent.AddListener(OnComplete_MoveCamToGameBLookPoint);
+
+        if (localPlayerID == 0)
+        {
+            TargetTweening.TranslateGameObject(cam_Tf, p1CamPoint_Tf, unityEvent);
+        }
+        else if (localPlayerID == 1)
+        {
+            TargetTweening.TranslateGameObject(cam_Tf, p2CamPoint_Tf, unityEvent);
+        }        
     }
 
-    IEnumerator Corou_PlayStrPhase()
+    void OnComplete_MoveCamToGameBLookPoint()
     {
-        strController_Cp.PlayPhase();
-        yield return new WaitUntil(() => strController_Cp.mainGameState
-            == Controller_StrPhase.GameState_En.PhaseFinished);
+        AddGameStates(GameState_En.CamMovedToGameBLookPoint);
+    }
+
+    //--------------------------------------------------
+    public void UpAPs()
+    {
+        for (int i = 0; i < playerAPs.Count; i++)
+        {
+            playerAPs[i] += 1;
+        }
 
         //
-        mainGameState = GameState_En.StrPhaseFinished;
+        MoveAPMarkers();
+    }
+
+    void MoveAPMarkers()
+    {
+        UnityEvent unityEvent = new UnityEvent();
+        unityEvent.AddListener(OnComplete_MoveAPMarkers);
+        TargetTweening.TranslateGameObject(p1APMarker_Tf, p1APPoint_Tfs[playerAPs[0] - 1], unityEvent);
+        TargetTweening.TranslateGameObject(p2APMarker_Tf, p2APPoint_Tfs[playerAPs[1] - 1], unityEvent);
+    }
+
+    void OnComplete_MoveAPMarkers()
+    {
+        AddGameStates(GameState_En.APMarkerMoved);
+    }
+
+    //--------------------------------------------------
+    public void UpTurnIndex()
+    {
+        turnIndex += 1;
+
+        //
+        MoveTurnMarker();
+    }
+
+    void MoveTurnMarker()
+    {
+        UnityEvent unityEvent = new UnityEvent();
+        unityEvent.AddListener(OnComplete_MoveTurnMarker);
+        TargetTweening.TranslateGameObject(turnMarker_Tf, turnPoint_Tfs[turnIndex - 1], unityEvent);
+    }
+
+    void OnComplete_MoveTurnMarker()
+    {
+        AddGameStates(GameState_En.TurnMarkerMoved);
     }
 
 }
