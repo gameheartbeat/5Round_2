@@ -190,7 +190,8 @@ public class DataManager_Gameplay : MonoBehaviour
     //--------------------------------------------------
     void InitDBPaths()
     {
-        string appDataPath = Directory.GetParent(Application.dataPath).FullName;
+        //string appDataPath = Directory.GetParent(Application.dataPath).FullName;
+        string appDataPath = Application.dataPath;
 
         unitCardsDBPath = Path.Combine(appDataPath, unitCardsDBRelativePath);
         takaraCardsDBPath = Path.Combine(appDataPath, takaraCardsDBRelativePath);
