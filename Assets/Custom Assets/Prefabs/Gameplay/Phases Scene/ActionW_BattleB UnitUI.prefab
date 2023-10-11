@@ -92,7 +92,7 @@ GameObject:
   - component: {fileID: 5739801201275215910}
   - component: {fileID: 5739801201275215909}
   m_Layer: 5
-  m_Name: Unit UI
+  m_Name: ActionW_BattleB UnitUI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
