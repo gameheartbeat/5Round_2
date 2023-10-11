@@ -4,6 +4,7 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.Events;
 using cakeslice;
+using System.Linq;
 
 public class UnitCard : MonoBehaviour
 {
@@ -27,6 +28,11 @@ public class UnitCard : MonoBehaviour
     public enum UnitPositionType_SetupStand
     {
         Candidate, Stand
+    }
+
+    public enum UnitPositionType_Phases
+    {
+        Mihari, Battle,
     }
 
     #endregion
@@ -71,6 +77,9 @@ public class UnitCard : MonoBehaviour
     [ReadOnly]
     public int cardIndex;
 
+    [ReadOnly]
+    public UnitCardData unitCardData;
+
     // party decision section
     [ReadOnly]
     public UnitPositionType_PartyDecision posType_PartyDecision;
@@ -85,12 +94,23 @@ public class UnitCard : MonoBehaviour
     [ReadOnly]
     public int posIndex_SetupStand;
 
+    // phases scene
+    [ReadOnly]
+    public UnitPositionType_Phases posType_Phases;
+
+    [ReadOnly]
+    public int posIndex_Phases;
+
     //-------------------------------------------------- private fields
     Vector3 originPosBeforeZoom;
 
     Vector3 originScaleBeforeZoom;
 
     Quaternion originRotBeforeZoom;
+
+    bool m_placedRight;
+
+    bool m_visible;
 
     #endregion
 
@@ -192,6 +212,39 @@ public class UnitCard : MonoBehaviour
         set { hlEffect_Cp.enabled = value; }
     }
 
+    public bool placedRight
+    {
+        get { return m_placedRight; }
+        set
+        {
+            m_placedRight = value;
+
+            if (value)
+            {
+                frontSide = unitCardData.frontSide;
+                backSide = unitCardData.backSide;
+            }
+            else
+            {
+                frontSide = unitCardData.backSide;
+                backSide = unitCardData.frontSide;
+            }
+        }
+    }
+
+    public bool visible
+    {
+        get { return m_visible; }
+        set
+        {
+            m_visible = value;
+
+            for (int i = 0; i < selectableMeshR_Cps.Length; i++)
+            {
+                selectableMeshR_Cps[i].enabled = value;
+            }
+        }
+    }
 
     //-------------------------------------------------- private properties
     GameObject controller_GO
@@ -361,5 +414,27 @@ public class UnitCard : MonoBehaviour
         SetAllStates(unitData_pr.index, unitData_pr.frontSide, unitData_pr.backSide,
             true, unitData_pr.cost, true, true);
     }
+
+    //////////////////////////////////////////////////////////////////////
+    /// <summary>
+    /// Phases scene
+    /// </summary>
+    //////////////////////////////////////////////////////////////////////
+    #region PhasesScene
+
+    //--------------------------------------------------
+    public void SetStatus_Phases(int playerID_pr,
+        UnitCardData unitCardData_pr, bool placedRight_pr = true, bool visible_pr = true)
+    {
+        playerID = playerID_pr;
+        frontSide = unitCardData_pr.frontSide;
+        backSide = unitCardData_pr.backSide;
+        cardIndex = unitCardData_pr.index;
+        unitCardData = unitCardData_pr;
+        placedRight = placedRight_pr;
+        visible = visible_pr;
+    }
+
+    #endregion
 
 }

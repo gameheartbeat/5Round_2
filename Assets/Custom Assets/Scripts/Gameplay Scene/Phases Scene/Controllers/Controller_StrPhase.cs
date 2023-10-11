@@ -38,6 +38,8 @@ public class Controller_StrPhase : MonoBehaviour
     //-------------------------------------------------- private fields
     Controller_Phases controller_Cp;
 
+    List<Player_Phases> player_Cps = new List<Player_Phases>();
+
     #endregion
 
     //////////////////////////////////////////////////////////////////////

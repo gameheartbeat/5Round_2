@@ -285,6 +285,13 @@ public class Controller_Phases : MonoBehaviour
 
     IEnumerator Corou_InitComponents()
     {
+        for (int i = 0; i < player_Cps.Count; i++)
+        {
+            player_Cps[i].Init();
+            yield return new WaitUntil(() => player_Cps[i].mainGameState
+                == Player_Phases.GameState_En.Inited);
+        }
+
         startController_Cp.Init();
         yield return new WaitUntil(() => startController_Cp.mainGameState
             == Controller_StartPhase.GameState_En.Inited);

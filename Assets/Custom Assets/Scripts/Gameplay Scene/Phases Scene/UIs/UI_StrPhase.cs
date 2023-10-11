@@ -140,6 +140,9 @@ public class UI_StrPhase : MonoBehaviour
     public List<UnitUI_Phases> bb_p2UnitUI_Cps = new List<UnitUI_Phases>();
 
     //-------------------------------------------------- private fields
+    Controller_Phases controller_Cp;
+
+    Controller_StrPhase strController_Cp;
 
     #endregion
 
@@ -277,7 +280,27 @@ public class UI_StrPhase : MonoBehaviour
     {
         AddMainGameState(GameState_En.Nothing);
 
+        //
+        SetComponents();
+
+        InitVariables();
+
+        //
         mainGameState = GameState_En.Inited;
+    }
+
+    //--------------------------------------------------
+    void SetComponents()
+    {
+        controller_Cp = GameObject.FindWithTag("GameController").GetComponent<Controller_Phases>();
+
+        strController_Cp = controller_Cp.strController_Cp;
+    }
+
+    //--------------------------------------------------
+    void InitVariables()
+    {
+
     }
 
     #endregion

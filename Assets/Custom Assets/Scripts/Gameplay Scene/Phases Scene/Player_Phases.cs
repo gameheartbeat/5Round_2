@@ -1,6 +1,22 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
+
+public class Round_Cs
+{
+    public int index;
+
+    public Transform roundPanel_Tf;
+
+    public Transform allyVan1_Tf, allyVan2_Tf, enemyVan1_Tf, enemyVan2_Tf;
+
+    public Transform markersGroup_Tf;
+
+    public Transform token_Tf;
+
+    public List<Transform> marker_Tfs = new List<Transform>();
+}
 
 public class Player_Phases : MonoBehaviour
 {
@@ -30,14 +46,56 @@ public class Player_Phases : MonoBehaviour
     [SerializeField]
     public bool isCreator, isLocalPlayer, isCom;
 
+    [SerializeField]
+    GameObject bUnit_Pf, mUnit_Pf;
+
+    [SerializeField]
+    Transform bUnitPointsGroup_Tf;
+
+    [SerializeField]
+    Transform mUnitPointsGroup_Tf;
+
+    [SerializeField]
+    Transform roundsGroup_Tf;
+
+    [SerializeField]
+    Transform playerBLookPoint_Tf, miharidaiLookPoint_Tf, battleBLookPoint_Tf;
+
     //-------------------------------------------------- public fields
     [ReadOnly]
     public List<GameState_En> gameStates = new List<GameState_En>();
 
+    //
     [ReadOnly]
     public int playerID;
 
+    [ReadOnly]
+    public List<UnitCardData> bUnitCardDatas = new List<UnitCardData>();
+
+    [ReadOnly]
+    public List<UnitCardData> mUnitCardDatas = new List<UnitCardData>();
+
+    //
+    [ReadOnly]
+    public List<UnitCard> bUnit_Cps = new List<UnitCard>();
+
+    [ReadOnly]
+    public List<UnitCard> mUnit_Cps = new List<UnitCard>();
+
+    public List<Round_Cs> rounds = new List<Round_Cs>();
+
     //-------------------------------------------------- private fields
+    Controller_Phases controller_Cp;
+
+    DataManager_Gameplay dataManager_Cp;
+
+    List<Transform> bUnitPoint_Tfs = new List<Transform>();
+
+    List<Transform> mUnitPoint_Tfs = new List<Transform>();
+
+    List<Transform> round_Tfs = new List<Transform>();
+
+    Transform cam_Tf;
 
     #endregion
 
@@ -175,7 +233,113 @@ public class Player_Phases : MonoBehaviour
     {
         AddMainGameState(GameState_En.Nothing);
 
+        //
+        SetComponents();
+
+        InitVariables();
+
+        //
         mainGameState = GameState_En.Inited;
+    }
+
+    //--------------------------------------------------
+    void SetComponents()
+    {
+        controller_Cp = GameObject.FindWithTag("GameController").GetComponent<Controller_Phases>();
+
+        dataManager_Cp = controller_Cp.dataManager_Cp;
+    }
+
+    //--------------------------------------------------
+    void InitVariables()
+    {
+        //
+        InitUnitCardDatas();
+
+        //
+        InitBattleUnits();
+
+        InitMihariUnits();
+
+        InitRounds();
+    }
+
+    //--------------------------------------------------
+    void InitUnitCardDatas()
+    {
+        bUnitCardDatas = dataManager_Cp.playersBattleUnitCardsData[playerID].unitCards;
+
+        mUnitCardDatas = dataManager_Cp.playersStandUnitCardsData[playerID].unitCards;
+    }
+
+    //--------------------------------------------------
+    void InitBattleUnits()
+    {
+        //
+        for (int i = 0; i < bUnitPointsGroup_Tf.childCount; i++)
+        {
+            bUnitPoint_Tfs.Add(bUnitPointsGroup_Tf.GetChild(i));
+        }
+
+        //
+        for (int i = 0; i < bUnitPoint_Tfs.Count; i++)
+        {
+            UnitCard bUnit_Cp_tp = Instantiate(bUnit_Pf, bUnitPoint_Tfs[i]).GetComponent<UnitCard>();
+            bUnit_Cps.Add(bUnit_Cp_tp);
+        }
+
+        //
+        for (int i = 0; i < bUnit_Cps.Count; i++)
+        {
+            bUnit_Cps[i].SetStatus_Phases(playerID, bUnitCardDatas[i], false, true);
+        }
+    }
+
+    //--------------------------------------------------
+    void InitMihariUnits()
+    {
+        //
+        for (int i = 0; i < mUnitPointsGroup_Tf.childCount; i++)
+        {
+            mUnitPoint_Tfs.Add(mUnitPointsGroup_Tf.GetChild(i));
+        }
+
+        //
+        for (int i = 0; i < mUnitPoint_Tfs.Count; i++)
+        {
+            UnitCard mUnit_Cp_tp = Instantiate(mUnit_Pf, mUnitPoint_Tfs[i]).GetComponent<UnitCard>();
+            mUnit_Cps.Add(mUnit_Cp_tp);
+        }
+
+        //
+        for (int i = 0; i < mUnit_Cps.Count; i++)
+        {
+            mUnit_Cps[i].SetStatus_Phases(playerID, mUnitCardDatas[i], true, true);
+        }
+    }
+
+    //--------------------------------------------------
+    void InitRounds()
+    {
+        //
+        for (int i = 0; i < roundsGroup_Tf.childCount; i++)
+        {
+            round_Tfs.Add(roundsGroup_Tf.GetChild(i));
+        }
+
+        //
+        for (int i = 0; i < round_Tfs.Count; i++)
+        {
+            Round_Cs round_Cp_tp = new Round_Cs();
+            round_Cp_tp.roundPanel_Tf = round_Tfs[i];
+            round_Cp_tp.allyVan1_Tf = round_Tfs[i].GetChild(0);
+            round_Cp_tp.allyVan2_Tf = round_Tfs[i].GetChild(1);
+            round_Cp_tp.enemyVan1_Tf = round_Tfs[i].GetChild(2);
+            round_Cp_tp.enemyVan2_Tf = round_Tfs[i].GetChild(3);
+            round_Cp_tp.markersGroup_Tf = round_Tfs[i].GetChild(4);
+
+            rounds.Add(round_Cp_tp);
+        }
     }
 
     #endregion
