@@ -4245,3 +4245,91 @@ AssetImportParameters requested are different than current active one (requested
   custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
   custom:video-decoder-webm-vp8: 9c59270c3fd7afecdb556c50c9e8de78 -> 
   custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+========================================================================
+Received Import Request.
+  Time since last request: 9755.199458 seconds.
+  path: Assets/Custom Assets/Textures/Disc/haikei2-01.jpg
+  artifactKey: Guid(e3e2574ec18393444b5d6dea5863a282) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Custom Assets/Textures/Disc/haikei2-01.jpg using Guid(e3e2574ec18393444b5d6dea5863a282) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '95356440b050ae624bccb53aebd8b3e8') in 0.129347 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000019 seconds.
+  path: Assets/Custom Assets/Textures/Disc/盤面イメージ.PNG
+  artifactKey: Guid(c43fd7adb13417d41bbc6c9650a9eea1) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Custom Assets/Textures/Disc/盤面イメージ.PNG using Guid(c43fd7adb13417d41bbc6c9650a9eea1) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'f5219f03ebd88e4c02223df1716adf2a') in 0.097594 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000070 seconds.
+  path: Assets/Custom Assets/Textures/Disc/player2-01.jpg
+  artifactKey: Guid(9e3e4846a26498a4085f85b8966e2356) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Custom Assets/Textures/Disc/player2-01.jpg using Guid(9e3e4846a26498a4085f85b8966e2356) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'f8f8b090b27fa0c98daa67cb514fc8e1') in 0.053815 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000024 seconds.
+  path: Assets/Custom Assets/Textures/Disc/Icon.jpg
+  artifactKey: Guid(f907ba62bc7f4d24c873aae45dfd4753) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Custom Assets/Textures/Disc/Icon.jpg using Guid(f907ba62bc7f4d24c873aae45dfd4753) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'b8021e80a409670d3f690115b121234f') in 0.060693 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000031 seconds.
+  path: Assets/Custom Assets/Textures/Disc/前衛と公営.PNG
+  artifactKey: Guid(d7af94cebcde6c3419ab883a69b9b59a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Custom Assets/Textures/Disc/前衛と公営.PNG using Guid(d7af94cebcde6c3419ab883a69b9b59a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'ec73af5fcd121a99e5c332b2ff54a989') in 0.040276 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 1.948536 seconds.
+  path: Assets/Custom Assets/Textures/Publicity Material/board-game.png
+  artifactKey: Guid(f47d9a029bd5d3147904f2081251e812) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Custom Assets/Textures/Publicity Material/board-game.png using Guid(f47d9a029bd5d3147904f2081251e812) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '81e88ecc132d43abc72801b22b021827') in 0.427490 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000019 seconds.
+  path: Assets/Custom Assets/Textures/Publicity Material/topcontent1_725_420-01.jpg
+  artifactKey: Guid(a04d1a52d1b1c0544a16fe2b845e2150) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Custom Assets/Textures/Publicity Material/topcontent1_725_420-01.jpg using Guid(a04d1a52d1b1c0544a16fe2b845e2150) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '92f7413be17f7afe4871b498781fa6f8') in 0.322285 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000024 seconds.
+  path: Assets/Custom Assets/Textures/Publicity Material/rulebook1-01.jpg
+  artifactKey: Guid(3d1123adbc21eb14e9d344e903098f0a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Custom Assets/Textures/Publicity Material/rulebook1-01.jpg using Guid(3d1123adbc21eb14e9d344e903098f0a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '62d7a49e3f0c64090b07341d35af39b9') in 0.349866 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000028 seconds.
+  path: Assets/Custom Assets/Textures/Publicity Material/news_hedder1_1450_360-01.png
+  artifactKey: Guid(a7f062a5cf9e2b14b9f5ba95df0ee53f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Custom Assets/Textures/Publicity Material/news_hedder1_1450_360-01.png using Guid(a7f062a5cf9e2b14b9f5ba95df0ee53f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'a7123c7c42fe3262dcb3c0e288e25063') in 0.171869 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 1.400218 seconds.
+  path: Assets/Custom Assets/Textures/Token/idou2-01.png
+  artifactKey: Guid(5d402952312f04d42994f35b3332b899) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Custom Assets/Textures/Token/idou2-01.png using Guid(5d402952312f04d42994f35b3332b899) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'b14c4ee3cb53058e44e2c1699e8f6bea') in 0.015005 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000018 seconds.
+  path: Assets/Custom Assets/Textures/Token/idou3-3-01.png
+  artifactKey: Guid(6ccdbb914f600174e8fd456566641276) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Custom Assets/Textures/Token/idou3-3-01.png using Guid(6ccdbb914f600174e8fd456566641276) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'ff223b591e3fc057b0fbd38dcf143b61') in 0.033028 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000029 seconds.
+  path: Assets/Custom Assets/Textures/Token/kougeki-midori-tsukaisute-01.png
+  artifactKey: Guid(b9cb32ca77e470d4e87e3cf58177d3f6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Custom Assets/Textures/Token/kougeki-midori-tsukaisute-01.png using Guid(b9cb32ca77e470d4e87e3cf58177d3f6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '0125070ff166760e325be74df9aafd99') in 0.034221 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000043 seconds.
+  path: Assets/Custom Assets/Textures/Token/shien-01.png
+  artifactKey: Guid(31aef05e5a13f0f40bf868bc625d34c0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Custom Assets/Textures/Token/shien-01.png using Guid(31aef05e5a13f0f40bf868bc625d34c0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '4b334ff8cdfc5f5baa57e2f6e78c61bc') in 0.047163 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000020 seconds.
+  path: Assets/Custom Assets/Textures/Token/idou3-01.png
+  artifactKey: Guid(1bde31bee6b79344a87a89344de5612d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Custom Assets/Textures/Token/idou3-01.png using Guid(1bde31bee6b79344a87a89344de5612d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'fca114c59393eab503350491b8c0ed52') in 0.033744 seconds 
+Editor requested this worker to shutdown with reason: Scaling down because of idle timeout
+AssetImportWorker is now disconnected from the server
+Process exiting
+Exiting without the bug reporter. Application will terminate with return code 0
