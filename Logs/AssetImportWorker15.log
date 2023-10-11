@@ -186,3 +186,75 @@ Received Import Request.
   path: Assets/GUI Mobile Hyper-Casual/Sprites/Sprites by Menu/Prize Machine-assets/Background Chest Prize Machine.png
   artifactKey: Guid(de99fcf249c21c84e99fb0525f3b89cf) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
 Start importing Assets/GUI Mobile Hyper-Casual/Sprites/Sprites by Menu/Prize Machine-assets/Background Chest Prize Machine.png using Guid(de99fcf249c21c84e99fb0525f3b89cf) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'cf70f1f68b79ac434d011675e08d25ad') in 0.054633 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 803.611652 seconds.
+  path: Assets/Custom Assets/Prefabs/Gameplay/Phases Scene/ActionW_BattleB Unit UI.prefab
+  artifactKey: Guid(a88200481b251c142b0ffc83c1249592) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Custom Assets/Prefabs/Gameplay/Phases Scene/ActionW_BattleB Unit UI.prefab using Guid(a88200481b251c142b0ffc83c1249592) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'd4bc6bd7dff68925f103f15f9dc5c666') in 0.020807 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 8.546592 seconds.
+  path: Assets/Custom Assets/Prefabs/Gameplay/Phases Scene/Unit UI.prefab
+  artifactKey: Guid(3830fadcc8b32004cb00d2ec8302d902) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Custom Assets/Prefabs/Gameplay/Phases Scene/Unit UI.prefab using Guid(3830fadcc8b32004cb00d2ec8302d902) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '5609e0da9ab6f6dc9419db3a5e310b33') in 0.004002 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 23.599542 seconds.
+  path: Assets/Custom Assets/Prefabs/Gameplay/Phases Scene/ActionWActions Unit UI.prefab
+  artifactKey: Guid(3830fadcc8b32004cb00d2ec8302d902) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Custom Assets/Prefabs/Gameplay/Phases Scene/ActionWActions Unit UI.prefab using Guid(3830fadcc8b32004cb00d2ec8302d902) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '6ab2207679a48d41ecabf0b4ecd8e30a') in 0.003913 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 18.925092 seconds.
+  path: Assets/Custom Assets/Prefabs/Gameplay/Phases Scene/ActionW_Actions UnitUI.prefab
+  artifactKey: Guid(3830fadcc8b32004cb00d2ec8302d902) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Custom Assets/Prefabs/Gameplay/Phases Scene/ActionW_Actions UnitUI.prefab using Guid(3830fadcc8b32004cb00d2ec8302d902) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '80524c96a97a6766f4854affd93be61c') in 0.003867 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 4.726790 seconds.
+  path: Assets/Custom Assets/Prefabs/Gameplay/Phases Scene/ActionW_BattleB UnitUI.prefab
+  artifactKey: Guid(a88200481b251c142b0ffc83c1249592) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Custom Assets/Prefabs/Gameplay/Phases Scene/ActionW_BattleB UnitUI.prefab using Guid(a88200481b251c142b0ffc83c1249592) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '630eca558b4d6c1768fbf2bcf2250904') in 0.004074 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 13.553024 seconds.
+  path: Assets/Custom Assets/Prefabs/Gameplay/Phases Scene/ActionW_Actions UnitUI.prefab
+  artifactKey: Guid(3830fadcc8b32004cb00d2ec8302d902) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Custom Assets/Prefabs/Gameplay/Phases Scene/ActionW_Actions UnitUI.prefab using Guid(3830fadcc8b32004cb00d2ec8302d902) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '71a2155109f780baee3de8aaf6ea71ab') in 0.003824 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 105.762045 seconds.
+  path: Assets/Custom Assets/Prefabs/Gameplay/Phases Scene/ActionW_Actions UnitUI.prefab
+  artifactKey: Guid(3830fadcc8b32004cb00d2ec8302d902) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Custom Assets/Prefabs/Gameplay/Phases Scene/ActionW_Actions UnitUI.prefab using Guid(3830fadcc8b32004cb00d2ec8302d902) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'da1148164be3b59cc07503f858fb6a75') in 0.004410 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.986190 seconds.
+  path: Assets/Custom Assets/Prefabs/Gameplay/Phases Scene/ActionW_Actions UnitUI.prefab
+  artifactKey: Guid(3830fadcc8b32004cb00d2ec8302d902) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Custom Assets/Prefabs/Gameplay/Phases Scene/ActionW_Actions UnitUI.prefab using Guid(3830fadcc8b32004cb00d2ec8302d902) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '0a8616e95b034920e19740c5ad16837c') in 0.003873 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 1233.316302 seconds.
+  path: Assets/Custom Assets/Textures/Arrow/Arrow.png
+  artifactKey: Guid(aff7123c70d7bfa4fbe871a0442c0c57) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Custom Assets/Textures/Arrow/Arrow.png using Guid(aff7123c70d7bfa4fbe871a0442c0c57) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '93a3ab3e1f2e3e426c4fe3ccaf86d64f') in 0.008781 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 13.422800 seconds.
+  path: Assets/Custom Assets/Textures/Arrow/Arrow.png
+  artifactKey: Guid(aff7123c70d7bfa4fbe871a0442c0c57) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Custom Assets/Textures/Arrow/Arrow.png using Guid(aff7123c70d7bfa4fbe871a0442c0c57) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'c1954225013bcd0d223122c0406e1ccc') in 0.015690 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 1113.755034 seconds.
+  path: Assets/Custom Assets/Textures/Arrow/Red Arrow.png
+  artifactKey: Guid(ae2f283eafb01c8408a0fee01fb4007d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Custom Assets/Textures/Arrow/Red Arrow.png using Guid(ae2f283eafb01c8408a0fee01fb4007d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'e5d9ae29b0182097c26bf49cb563b353') in 0.010889 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 14.944979 seconds.
+  path: Assets/Custom Assets/Textures/Arrow/Red Arrow.png
+  artifactKey: Guid(ae2f283eafb01c8408a0fee01fb4007d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Custom Assets/Textures/Arrow/Red Arrow.png using Guid(ae2f283eafb01c8408a0fee01fb4007d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '1b61cc2e64facd8ed29930a6389b9e2e') in 0.019989 seconds 
