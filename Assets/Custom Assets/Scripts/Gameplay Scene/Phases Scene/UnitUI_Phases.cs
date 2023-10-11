@@ -69,9 +69,9 @@ public class UnitUI_Phases : MonoBehaviour
         set { hp_GO.SetActive(value); }
     }
 
-    public string hpText
+    public int hp
     {
-        set { hpText_Cp.text = value; }
+        set { hpText_Cp.text = "HP : " + value.ToString(); }
     }
 
     //-------------------------------------------------- private properties

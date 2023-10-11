@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 627785681481345421}
   - component: {fileID: 627785681481345423}
   - component: {fileID: 627785681481345420}
+  - component: {fileID: 1438849872851462520}
   m_Layer: 5
   m_Name: ActionW_Actions UnitUI
   m_TagString: Untagged
@@ -76,3 +77,19 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &1438849872851462520
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 627785681481345418}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 46330b7c48a2c1e49852f934b731ec54, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  frontImage_Cp: {fileID: 627785681481345420}
+  hp_GO: {fileID: 0}
+  hpText_Cp: {fileID: 0}
+  gameStates: 

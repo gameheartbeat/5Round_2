@@ -53,7 +53,7 @@ public class UI_StrPhase : MonoBehaviour
     public GameObject aw_guardPanel_GO, aw_shienPanel_GO, aw_movePanel_GO, aw_atkPanel_GO;
 
     [SerializeField]
-    public GameObject aw_p1UnitsPanel_GO, aw_p2UnitsPanel_GO;
+    public GameObject aw_p1bUnitsPanel_GO, aw_p2bUnitsPanel_GO;
 
     [SerializeField]
     public Text aw_gu_guardDesText_Cp, aw_gu_spMarkerText_Cp;
@@ -96,11 +96,15 @@ public class UI_StrPhase : MonoBehaviour
 
     // battleboard panel
     [SerializeField]
-    public Text bb_mihariText_Cp, bb_discardpileText_Cp, bb_kenText_Cp, bb_maText_Cp, bb_yumiText_Cp,
-        bb_fushiText_Cp, bb_ryuText_Cp;
+    public Text bb_p1mihariText_Cp, bb_p1discardpileText_Cp, bb_p1kenText_Cp, bbp1_maText_Cp, bb_p1yumiText_Cp,
+        bb_p1fushiText_Cp, bb_p1ryuText_Cp;
 
     [SerializeField]
-    public Transform p1UnitUIsGroup_Tf, p2UnitUIsGroup_Tf;
+    public Text bb_p2mihariText_Cp, bb_p2discardpileText_Cp, bb_p2kenText_Cp, bbp2_maText_Cp, bb_p2yumiText_Cp,
+        bb_p2fushiText_Cp, bb_p2ryuText_Cp;
+
+    [SerializeField]
+    public Transform bb_p1UnitUIsGroup_Tf, bb_p2UnitUIsGroup_Tf;
 
     // card details panel
     [SerializeField]
@@ -124,13 +128,13 @@ public class UI_StrPhase : MonoBehaviour
 
     // action window
     [ReadOnly]
-    public List<UnitUI_Phases> aw_sh_mihariUnit_Cps = new List<UnitUI_Phases>();
+    public List<UnitUI_Phases> aw_sh_mUnit_Cps = new List<UnitUI_Phases>();
 
     [ReadOnly]
-    public List<UnitUI_Phases> aw_sh_p1BattleBUnit_Cps = new List<UnitUI_Phases>();
+    public List<UnitUI_Phases> aw_p1bUnitUI_Cps = new List<UnitUI_Phases>();
 
     [ReadOnly]
-    public List<UnitUI_Phases> aw_sh_p2BattleBUnit_Cps = new List<UnitUI_Phases>();
+    public List<UnitUI_Phases> aw_p2bUnitUI_Cps = new List<UnitUI_Phases>();
 
     // battlebaord
     [ReadOnly]
@@ -143,6 +147,10 @@ public class UI_StrPhase : MonoBehaviour
     Controller_Phases controller_Cp;
 
     Controller_StrPhase strController_Cp;
+
+    List<Player_Phases> player_Cps = new List<Player_Phases>();
+
+    Player_Phases localPlayer_Cp, otherPlayer_Cp;
 
     #endregion
 
@@ -295,14 +303,113 @@ public class UI_StrPhase : MonoBehaviour
         controller_Cp = GameObject.FindWithTag("GameController").GetComponent<Controller_Phases>();
 
         strController_Cp = controller_Cp.strController_Cp;
+
+        player_Cps = controller_Cp.player_Cps;
+
+        localPlayer_Cp = controller_Cp.localPlayer_Cp;
+
+        otherPlayer_Cp = controller_Cp.otherPlayer_Cp;
     }
 
     //--------------------------------------------------
     void InitVariables()
     {
+        //
+        playerBPanel_GO.SetActive(false);
+        actionWPanel_GO.SetActive(false);
+        miharidaiPanel_GO.SetActive(false);
+        battleBPanel_GO.SetActive(false);
+        cardDetailPanel_GO.SetActive(false);
 
+        //
+        InitActionWindowPanel();
+
+        InitBattleboardPanel();
+    }
+
+    //--------------------------------------------------
+    void InitActionWindowPanel()
+    {
+        //
+        aw_guardPanel_GO.SetActive(false);
+        aw_shienPanel_GO.SetActive(false);
+        aw_movePanel_GO.SetActive(false);
+        aw_atkPanel_GO.SetActive(false);
+
+        //
+        UnitUI_Phases[] aw_sh_mUnitUI_Cps_tp = aw_sh_mihariUnitsGroup_GO.GetComponentsInChildren<UnitUI_Phases>();
+        for (int i = 0; i < aw_sh_mUnitUI_Cps_tp.Length; i++)
+        {
+            aw_sh_mUnit_Cps.Add(aw_sh_mUnitUI_Cps_tp[i]);
+        }
+
+        //
+        UnitUI_Phases[] aw_p1bUnitUI_Cps_tp = aw_p1bUnitsPanel_GO.GetComponentsInChildren<UnitUI_Phases>();
+        for (int i = 0; i < aw_p1bUnitUI_Cps_tp.Length; i++)
+        {
+            aw_p1bUnitUI_Cps.Add(aw_p1bUnitUI_Cps_tp[i]);
+        }
+
+        UnitUI_Phases[] aw_p2bUnitUI_Cps_tp = aw_p2bUnitsPanel_GO.GetComponentsInChildren<UnitUI_Phases>();
+        for (int i = 0; i < aw_p2bUnitUI_Cps_tp.Length; i++)
+        {
+            aw_p2bUnitUI_Cps.Add(aw_p2bUnitUI_Cps_tp[i]);
+        }
+
+        //
+        RefreshActionWindowShienUnits();
+
+        RefreshActionWindowBattleUnits();
+    }
+
+    //--------------------------------------------------
+    void InitBattleboardPanel()
+    {
+        //
+        bb_p1UnitUI_Cps = new List<UnitUI_Phases>(bb_p1UnitUIsGroup_Tf.GetComponentsInChildren<UnitUI_Phases>());
+        bb_p2UnitUI_Cps = new List<UnitUI_Phases>(bb_p2UnitUIsGroup_Tf.GetComponentsInChildren<UnitUI_Phases>());
+
+        //
+        RefreshBattleboardUnits();
     }
 
     #endregion
+
+    //--------------------------------------------------
+    public void RefreshActionWindowShienUnits()
+    {
+        for (int i = 0; i < aw_sh_mUnit_Cps.Count; i++)
+        {
+            aw_sh_mUnit_Cps[i].frontSprite = localPlayer_Cp.mUnit_Cps[i].frontSide;
+        }
+    }
+
+    //--------------------------------------------------
+    public void RefreshActionWindowBattleUnits()
+    {
+        for (int i = 0; i < aw_p1bUnitUI_Cps.Count; i++)
+        {
+            aw_p1bUnitUI_Cps[i].frontSprite = player_Cps[0].bUnit_Cps[i].frontSide;
+        }
+
+        for (int i = 0; i < aw_p2bUnitUI_Cps.Count; i++)
+        {
+            aw_p2bUnitUI_Cps[i].frontSprite = player_Cps[1].bUnit_Cps[i].frontSide;
+        }
+    }
+
+    //--------------------------------------------------
+    public void RefreshBattleboardUnits()
+    {
+        for (int i = 0; i < bb_p1UnitUI_Cps.Count; i++)
+        {
+            bb_p1UnitUI_Cps[i].frontSprite = player_Cps[0].bUnit_Cps[i].frontSide;
+        }
+
+        for (int i = 0; i < aw_p2bUnitUI_Cps.Count; i++)
+        {
+            bb_p1UnitUI_Cps[i].frontSprite = player_Cps[1].bUnit_Cps[i].frontSide;
+        }
+    }
 
 }

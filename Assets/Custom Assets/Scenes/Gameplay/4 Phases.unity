@@ -2135,84 +2135,91 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 964d621481a944f44b0b0ab3c9e658a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerBPanel_GO: {fileID: 0}
-  actionWPanel_GO: {fileID: 0}
-  miharidaiPanel_GO: {fileID: 0}
-  battleBPanel_GO: {fileID: 0}
-  cardDetailPanel_GO: {fileID: 0}
-  pb_apText_Cp: {fileID: 0}
-  pb_spMarkerText_Cp: {fileID: 0}
-  pb_shienText_Cp: {fileID: 0}
-  pb_move1Text_Cp: {fileID: 0}
-  pb_move2Text_Cp: {fileID: 0}
-  pb_move3Text_Cp: {fileID: 0}
-  pb_atk1Text_Cp: {fileID: 0}
-  pb_atk2Text_Cp: {fileID: 0}
-  aw_guardPanel_GO: {fileID: 0}
-  aw_shienPanel_GO: {fileID: 0}
-  aw_movePanel_GO: {fileID: 0}
-  aw_atkPanel_GO: {fileID: 0}
-  aw_p1UnitsPanel_GO: {fileID: 0}
-  aw_p2UnitsPanel_GO: {fileID: 0}
-  aw_gu_guardDesText_Cp: {fileID: 0}
-  aw_gu_spMarkerText_Cp: {fileID: 0}
-  aw_gu_incBtn_Cp: {fileID: 0}
-  aw_gu_decBtn_Cp: {fileID: 0}
-  aw_sh_descText_Cp: {fileID: 0}
-  aw_sh_unitText_Cp: {fileID: 0}
-  aw_sh_shienText_Cp: {fileID: 0}
-  aw_sh_selectUnitsPanel_GO: {fileID: 0}
-  aw_sh_mihariUnitsGroup_GO: {fileID: 0}
-  aw_sh_van1Bgd_GO: {fileID: 0}
-  aw_sh_van2Bgd_GO: {fileID: 0}
-  aw_mo_descText_Cp: {fileID: 0}
-  aw_mo_van1Bgd_GO: {fileID: 0}
-  aw_mo_van2Bgd_GO: {fileID: 0}
-  aw_mo_rear1Bgd_Cp: {fileID: 0}
-  aw_mo_rear2Bgd_Cp: {fileID: 0}
-  aw_mo_rear3Bgd_Cp: {fileID: 0}
-  aw_mo_arrow_RT: {fileID: 0}
-  aw_at_descText_Cp: {fileID: 0}
-  aw_at_allyVan1_GO: {fileID: 0}
-  aw_at_allyVan2_GO: {fileID: 0}
-  aw_at_enemyVan1_GO: {fileID: 0}
-  aw_at_enemyVan2_GO: {fileID: 0}
-  aw_at_arrow_RT: {fileID: 0}
-  aw_at_normalAtkText_Cp: {fileID: 0}
-  aw_at_spc1AtkText_Cp: {fileID: 0}
-  aw_at_spc2AtkText_Cp: {fileID: 0}
-  bb_mihariText_Cp: {fileID: 0}
-  bb_discardpileText_Cp: {fileID: 0}
-  bb_kenText_Cp: {fileID: 0}
-  bb_maText_Cp: {fileID: 0}
-  bb_yumiText_Cp: {fileID: 0}
-  bb_fushiText_Cp: {fileID: 0}
-  bb_ryuText_Cp: {fileID: 0}
-  p1UnitUIsGroup_Tf: {fileID: 0}
-  p2UnitUIsGroup_Tf: {fileID: 0}
-  cd_cardImage_Cp: {fileID: 0}
-  cd_cardNameText_Cp: {fileID: 0}
-  cd_costText_Cp: {fileID: 0}
-  cd_atrText_Cp: {fileID: 0}
-  cd_maxHpText_Cp: {fileID: 0}
-  cd_curHPText_Cp: {fileID: 0}
-  cd_atkText_Cp: {fileID: 0}
-  cd_agiText_Cp: {fileID: 0}
-  cd_defText_Cp: {fileID: 0}
-  cd_accuracyCorrText_Cp: {fileID: 0}
-  cd_CTCorrText_Cp: {fileID: 0}
-  cd_normalAtkCorrText_Cp: {fileID: 0}
-  cd_spcAtkCorrText_Cp: {fileID: 0}
-  cd_dmgCorrText_Cp: {fileID: 0}
-  cd_indirDmgCorrText_Cp: {fileID: 0}
-  cd_noiseCorrText_Cp: {fileID: 0}
-  cd_shienEffectCorrText_Cp: {fileID: 0}
-  cd_diceEffectCorrText_Cp: {fileID: 0}
-  cd_equipItemsContent_RT: {fileID: 0}
+  playerBPanel_GO: {fileID: 1461912323}
+  actionWPanel_GO: {fileID: 893052263}
+  miharidaiPanel_GO: {fileID: 151843158}
+  battleBPanel_GO: {fileID: 656610966}
+  cardDetailPanel_GO: {fileID: 846108352}
+  pb_apText_Cp: {fileID: 1929964140}
+  pb_spMarkerText_Cp: {fileID: 1593910505}
+  pb_shienText_Cp: {fileID: 715034139}
+  pb_move1Text_Cp: {fileID: 1983255960}
+  pb_move2Text_Cp: {fileID: 618731679}
+  pb_move3Text_Cp: {fileID: 1497732602}
+  pb_atk1Text_Cp: {fileID: 332373418}
+  pb_atk2Text_Cp: {fileID: 185771852}
+  aw_guardPanel_GO: {fileID: 601143429}
+  aw_shienPanel_GO: {fileID: 964292945}
+  aw_movePanel_GO: {fileID: 1646449299}
+  aw_atkPanel_GO: {fileID: 1298333034}
+  aw_p1bUnitsPanel_GO: {fileID: 289785703}
+  aw_p2bUnitsPanel_GO: {fileID: 2124770326}
+  aw_gu_guardDesText_Cp: {fileID: 1784508032}
+  aw_gu_spMarkerText_Cp: {fileID: 2015461113}
+  aw_gu_incBtn_Cp: {fileID: 1387902730}
+  aw_gu_decBtn_Cp: {fileID: 1471698382}
+  aw_sh_descText_Cp: {fileID: 67267351}
+  aw_sh_unitText_Cp: {fileID: 1565739299}
+  aw_sh_shienText_Cp: {fileID: 742210657}
+  aw_sh_selectUnitsPanel_GO: {fileID: 1569668555}
+  aw_sh_mihariUnitsGroup_GO: {fileID: 1569668555}
+  aw_sh_van1Bgd_GO: {fileID: 1240950585}
+  aw_sh_van2Bgd_GO: {fileID: 986036472}
+  aw_mo_descText_Cp: {fileID: 578049056}
+  aw_mo_van1Bgd_GO: {fileID: 2057979345}
+  aw_mo_van2Bgd_GO: {fileID: 729220035}
+  aw_mo_rear1Bgd_Cp: {fileID: 1718701462}
+  aw_mo_rear2Bgd_Cp: {fileID: 1227064666}
+  aw_mo_rear3Bgd_Cp: {fileID: 1758579062}
+  aw_mo_arrow_RT: {fileID: 1759107785}
+  aw_at_descText_Cp: {fileID: 573022185}
+  aw_at_allyVan1_GO: {fileID: 875173417}
+  aw_at_allyVan2_GO: {fileID: 1660991917}
+  aw_at_enemyVan1_GO: {fileID: 796287721}
+  aw_at_enemyVan2_GO: {fileID: 1202821582}
+  aw_at_arrow_RT: {fileID: 42924737}
+  aw_at_normalAtkText_Cp: {fileID: 2089894767}
+  aw_at_spc1AtkText_Cp: {fileID: 1038062177}
+  aw_at_spc2AtkText_Cp: {fileID: 568600409}
+  bb_p1mihariText_Cp: {fileID: 252638244}
+  bb_p1discardpileText_Cp: {fileID: 640955888}
+  bb_p1kenText_Cp: {fileID: 1003450096}
+  bbp1_maText_Cp: {fileID: 619337779}
+  bb_p1yumiText_Cp: {fileID: 10827486}
+  bb_p1fushiText_Cp: {fileID: 955560533}
+  bb_p1ryuText_Cp: {fileID: 2038225100}
+  bb_p2mihariText_Cp: {fileID: 570128163}
+  bb_p2discardpileText_Cp: {fileID: 1193651752}
+  bb_p2kenText_Cp: {fileID: 906667869}
+  bbp2_maText_Cp: {fileID: 2026534500}
+  bb_p2yumiText_Cp: {fileID: 1140107676}
+  bb_p2fushiText_Cp: {fileID: 2081532415}
+  bb_p2ryuText_Cp: {fileID: 613236834}
+  bb_p1UnitUIsGroup_Tf: {fileID: 2147219503}
+  bb_p2UnitUIsGroup_Tf: {fileID: 1146299326}
+  cd_cardImage_Cp: {fileID: 1702635698}
+  cd_cardNameText_Cp: {fileID: 1674911904}
+  cd_costText_Cp: {fileID: 2022019469}
+  cd_atrText_Cp: {fileID: 562295929}
+  cd_maxHpText_Cp: {fileID: 2083034353}
+  cd_curHPText_Cp: {fileID: 954496498}
+  cd_atkText_Cp: {fileID: 472428276}
+  cd_agiText_Cp: {fileID: 138066310}
+  cd_defText_Cp: {fileID: 573986994}
+  cd_accuracyCorrText_Cp: {fileID: 878948976}
+  cd_CTCorrText_Cp: {fileID: 229338043}
+  cd_normalAtkCorrText_Cp: {fileID: 480842346}
+  cd_spcAtkCorrText_Cp: {fileID: 1954301951}
+  cd_dmgCorrText_Cp: {fileID: 1115644381}
+  cd_indirDmgCorrText_Cp: {fileID: 1704886703}
+  cd_noiseCorrText_Cp: {fileID: 411965038}
+  cd_shienEffectCorrText_Cp: {fileID: 1726614516}
+  cd_diceEffectCorrText_Cp: {fileID: 760304369}
+  cd_equipItemsContent_RT: {fileID: 128760232}
   gameStates: 
-  aw_sh_mihariUnit_Cps: []
-  aw_sh_p1BattleBUnit_Cps: []
-  aw_sh_p2BattleBUnit_Cps: []
+  aw_sh_mUnit_Cps: []
+  aw_p1bUnitUI_Cps: []
+  aw_p2bUnitUI_Cps: []
   bb_p1UnitUI_Cps: []
   bb_p2UnitUI_Cps: []
 --- !u!1 &100602201
@@ -23189,86 +23196,6 @@ Transform:
   m_Father: {fileID: 941164997}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1533169639
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1533169640}
-  - component: {fileID: 1533169642}
-  - component: {fileID: 1533169641}
-  m_Layer: 5
-  m_Name: Text
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!224 &1533169640
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1533169639}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1702635697}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 200, y: 50}
-  m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1533169641
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1533169639}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
-  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
-  m_Maskable: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-  m_FontData:
-    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 45
-    m_FontStyle: 1
-    m_BestFit: 0
-    m_MinSize: 3
-    m_MaxSize: 55
-    m_Alignment: 4
-    m_AlignByGeometry: 0
-    m_RichText: 1
-    m_HorizontalOverflow: 1
-    m_VerticalOverflow: 1
-    m_LineSpacing: 1
-  m_Text: "\u5473 \u65B9"
---- !u!222 &1533169642
-CanvasRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1533169639}
-  m_CullTransparentMesh: 1
 --- !u!1 &1534777969
 GameObject:
   m_ObjectHideFlags: 0
@@ -26285,7 +26212,7 @@ GameObject:
   - component: {fileID: 1702635699}
   - component: {fileID: 1702635698}
   m_Layer: 5
-  m_Name: Ally Image
+  m_Name: Card Image
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -26302,8 +26229,7 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 1533169640}
+  m_Children: []
   m_Father: {fileID: 2067456824}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

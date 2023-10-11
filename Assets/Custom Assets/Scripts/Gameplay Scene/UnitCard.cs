@@ -133,11 +133,13 @@ public class UnitCard : MonoBehaviour
 
     public Sprite frontSide
     {
+        get { return placedPosture ? unitCardData.frontSide : unitCardData.backSide; }
         set { frontSideMeshR_Cp.material.mainTexture = value.texture; }
     }
 
     public Sprite backSide
     {
+        get { return placedPosture ? unitCardData.backSide : unitCardData.frontSide; }
         set { backSideMeshR_Cp.material.mainTexture = value.texture; }
     }
 
@@ -212,7 +214,7 @@ public class UnitCard : MonoBehaviour
         set { hlEffect_Cp.enabled = value; }
     }
 
-    public bool placedRight
+    public bool placedPosture
     {
         get { return m_placedRight; }
         set
@@ -431,7 +433,7 @@ public class UnitCard : MonoBehaviour
         backSide = unitCardData_pr.backSide;
         cardIndex = unitCardData_pr.index;
         unitCardData = unitCardData_pr;
-        placedRight = placedRight_pr;
+        placedPosture = placedRight_pr;
         visible = visible_pr;
     }
 
