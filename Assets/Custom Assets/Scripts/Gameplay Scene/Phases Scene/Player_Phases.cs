@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class Round_Cs
 {
@@ -59,7 +60,7 @@ public class Player_Phases : MonoBehaviour
     Transform roundsGroup_Tf;
 
     [SerializeField]
-    Transform playerBLookPoint_Tf, miharidaiLookPoint_Tf, battleBLookPoint_Tf;
+    public Transform playerBLookPoint_Tf, miharidaiLookPoint_Tf, battleBLookPoint_Tf;
 
     //-------------------------------------------------- public fields
     [ReadOnly]
@@ -340,6 +341,35 @@ public class Player_Phases : MonoBehaviour
 
             rounds.Add(round_Cp_tp);
         }
+
+        //
+        for (int i = 0; i < round_Tfs.Count; i++)
+        {
+            LongPressDetector clickDetector_Cp_tp = round_Tfs[i].AddComponent<LongPressDetector>();
+
+            clickDetector_Cp_tp.targetObject_Tf = clickDetector_Cp_tp.transform;
+            clickDetector_Cp_tp.enableClickDetect = true;
+
+            int index = i;
+            UnityEvent unityEvent = new UnityEvent();
+            unityEvent.AddListener(() => OnClickRound(index));
+            clickDetector_Cp_tp.onClicked = unityEvent;
+        }
+    }
+
+    #endregion
+
+    //////////////////////////////////////////////////////////////////////
+    /// <summary>
+    /// OnEvents
+    /// </summary>
+    //////////////////////////////////////////////////////////////////////
+    
+    #region OnEvents
+    //--------------------------------------------------
+    void OnClickRound(int index)
+    {
+        controller_Cp.strController_Cp.strUI_Cp.OnPbPanel_Round(index);
     }
 
     #endregion

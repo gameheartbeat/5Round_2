@@ -16,6 +16,7 @@ public class UI_StrPhase : MonoBehaviour
     public enum GameState_En
     {
         Nothing, Inited, Playing, WillFinish,
+        OnPlayerboardPanel, OnActionWindowPanel, OnMiharidaiPanel, OnBattleboardPanel, OnCardDetailPanel,
     }
 
     #endregion
@@ -152,6 +153,8 @@ public class UI_StrPhase : MonoBehaviour
 
     Player_Phases localPlayer_Cp, otherPlayer_Cp;
 
+    int localPlayerID;
+
     #endregion
 
     //////////////////////////////////////////////////////////////////////
@@ -241,7 +244,7 @@ public class UI_StrPhase : MonoBehaviour
         {
             if (gameStates.Contains(value))
             {
-                result = false;
+                result = true;
                 break;
             }
         }
@@ -309,6 +312,8 @@ public class UI_StrPhase : MonoBehaviour
         localPlayer_Cp = controller_Cp.localPlayer_Cp;
 
         otherPlayer_Cp = controller_Cp.otherPlayer_Cp;
+
+        localPlayerID = controller_Cp.localPlayerID;
     }
 
     //--------------------------------------------------
@@ -338,10 +343,26 @@ public class UI_StrPhase : MonoBehaviour
 
         //
         aw_sh_mUnit_Cps = new List<UnitUI_Phases>(aw_sh_mihariUnitsGroup_GO.GetComponentsInChildren<UnitUI_Phases>());
+        for (int i = 0; i < aw_sh_mUnit_Cps.Count; i++)
+        {
+            int index = i;
+            aw_sh_mUnit_Cps[i].GetComponent<Button>().onClick.AddListener(() => On_Aw_Sh_ShienUnitBtn(index));
+        }
 
         //
         aw_p1bUnitUI_Cps = new List<UnitUI_Phases>(aw_p1bUnitsPanel_GO.GetComponentsInChildren<UnitUI_Phases>());
+        for (int i = 0; i < aw_p1bUnitUI_Cps.Count; i++)
+        {
+            int index = i;
+            aw_p1bUnitUI_Cps[i].GetComponent<Button>().onClick.AddListener(() => On_Aw_BUnitUI(0, index));
+        }
+
         aw_p2bUnitUI_Cps = new List<UnitUI_Phases>(aw_p2bUnitsPanel_GO.GetComponentsInChildren<UnitUI_Phases>());
+        for (int i = 0; i < aw_p2bUnitUI_Cps.Count; i++)
+        {
+            int index = i;
+            aw_p2bUnitUI_Cps[i].GetComponent<Button>().onClick.AddListener(() => On_Aw_BUnitUI(1, index));
+        }
 
         //
         RefreshActionWindowShienUnits();
@@ -354,7 +375,18 @@ public class UI_StrPhase : MonoBehaviour
     {
         //
         bb_p1UnitUI_Cps = new List<UnitUI_Phases>(bb_p1UnitUIsGroup_Tf.GetComponentsInChildren<UnitUI_Phases>());
+        for (int i = 0; i < bb_p1UnitUI_Cps.Count; i++)
+        {
+            int index = i;
+            bb_p1UnitUI_Cps[i].GetComponent<Button>().onClick.AddListener(() => On_Bb_Unit(0, index));
+        }
+
         bb_p2UnitUI_Cps = new List<UnitUI_Phases>(bb_p2UnitUIsGroup_Tf.GetComponentsInChildren<UnitUI_Phases>());
+        for (int i = 0; i < bb_p2UnitUI_Cps.Count; i++)
+        {
+            int index = i;
+            bb_p2UnitUI_Cps[i].GetComponent<Button>().onClick.AddListener(() => On_Bb_Unit(1, index));
+        }
 
         //
         RefreshBattleboardUnits();
@@ -367,7 +399,7 @@ public class UI_StrPhase : MonoBehaviour
     {
         for (int i = 0; i < aw_sh_mUnit_Cps.Count; i++)
         {
-            aw_sh_mUnit_Cps[i].frontSprite = localPlayer_Cp.mUnit_Cps[i].frontSide;
+            aw_sh_mUnit_Cps[i].frontSprite = localPlayer_Cp.mUnit_Cps[i].unitCardData.frontSide;
         }
     }
 
@@ -376,12 +408,26 @@ public class UI_StrPhase : MonoBehaviour
     {
         for (int i = 0; i < aw_p1bUnitUI_Cps.Count; i++)
         {
-            aw_p1bUnitUI_Cps[i].frontSprite = player_Cps[0].bUnit_Cps[i].frontSide;
+            if (localPlayerID == 0)
+            {
+                aw_p1bUnitUI_Cps[i].frontSprite = player_Cps[0].bUnit_Cps[i].unitCardData.frontSide;
+            }
+            else
+            {
+                aw_p1bUnitUI_Cps[i].frontSprite = player_Cps[0].bUnit_Cps[i].frontSide;
+            }
         }
 
         for (int i = 0; i < aw_p2bUnitUI_Cps.Count; i++)
         {
-            aw_p2bUnitUI_Cps[i].frontSprite = player_Cps[1].bUnit_Cps[i].frontSide;
+            if (localPlayerID == 1)
+            {
+                aw_p2bUnitUI_Cps[i].frontSprite = player_Cps[1].bUnit_Cps[i].unitCardData.frontSide;
+            }
+            else
+            {
+                aw_p2bUnitUI_Cps[i].frontSprite = player_Cps[1].bUnit_Cps[i].frontSide;
+            }
         }
     }
 
@@ -390,67 +436,195 @@ public class UI_StrPhase : MonoBehaviour
     {
         for (int i = 0; i < bb_p1UnitUI_Cps.Count; i++)
         {
-            bb_p1UnitUI_Cps[i].frontSprite = player_Cps[0].bUnit_Cps[i].frontSide;
+            if (localPlayerID == 0)
+            {
+                bb_p1UnitUI_Cps[i].frontSprite = player_Cps[0].bUnit_Cps[i].unitCardData.frontSide;
+            }
+            else
+            {
+                bb_p1UnitUI_Cps[i].frontSprite = player_Cps[0].bUnit_Cps[i].frontSide;
+            }
         }
 
         for (int i = 0; i < bb_p2UnitUI_Cps.Count; i++)
         {
-            bb_p2UnitUI_Cps[i].frontSprite = player_Cps[1].bUnit_Cps[i].frontSide;
+            if (localPlayerID == 1)
+            {
+                bb_p2UnitUI_Cps[i].frontSprite = player_Cps[1].bUnit_Cps[i].unitCardData.frontSide;
+            }
+            else
+            {
+                bb_p2UnitUI_Cps[i].frontSprite = player_Cps[1].bUnit_Cps[i].frontSide;
+            }
         }
+    }
+
+    //--------------------------------------------------
+    void SetActivePanel(GameState_En gameState_pr, bool flag)
+    {
+        switch (gameState_pr)
+        {
+            case GameState_En.OnPlayerboardPanel:
+                playerBPanel_GO.SetActive(flag);
+                break;
+            case GameState_En.OnActionWindowPanel:
+                actionWPanel_GO.SetActive(flag);
+                break;
+            case GameState_En.OnMiharidaiPanel:
+                miharidaiPanel_GO.SetActive(flag);
+                break;
+            case GameState_En.OnBattleboardPanel:
+                battleBPanel_GO.SetActive(flag);
+                break;
+            case GameState_En.OnCardDetailPanel:
+                cardDetailPanel_GO.SetActive(flag);
+                break;
+        }
+    }
+
+    public void MoveToPlayerboard()
+    {
+        SetActivePanel(mainGameState, false);
+
+        mainGameState = GameState_En.OnPlayerboardPanel;
+        SetActivePanel(mainGameState, true);
+
+        //
+        strController_Cp.MoveCamToPlayerboard();
+    }
+
+    void MoveToActionWindow(int index)
+    {
+        AddGameStates(GameState_En.OnActionWindowPanel);
+        SetActivePanel(GameState_En.OnActionWindowPanel, true);
+
+        //
+        DisableActionWindowActionPanels();
+        aw_guardPanel_GO.SetActive(true);
+    }
+
+    void MoveToMiharidai()
+    {
+        SetActivePanel(mainGameState, false);
+
+        mainGameState = GameState_En.OnMiharidaiPanel;
+        SetActivePanel(mainGameState, true);
+
+        //
+        strController_Cp.MoveCamToMiharidai();
+    }
+
+    void MoveToBattleboard()
+    {
+        SetActivePanel(mainGameState, false);
+
+        //
+        mainGameState = GameState_En.OnBattleboardPanel;
+        SetActivePanel(mainGameState, true);
+    }
+
+    void MoveToCardDetail(int playerID_pr, UnitCard unit_Cp_pr)
+    {
+        //
+        if (playerID_pr != localPlayerID && !unit_Cp_pr.placedPosture)
+        {
+            cd_cardImage_Cp.sprite = unit_Cp_pr.unitCardData.backSide;
+        }
+        else
+        {
+            cd_cardImage_Cp.sprite = unit_Cp_pr.unitCardData.frontSide;
+        }
+
+        //
+        AddGameStates(GameState_En.OnCardDetailPanel);
+        SetActivePanel(GameState_En.OnCardDetailPanel, true);
+    }
+
+    //--------------------------------------------------
+    void DisableActionWindowActionPanels()
+    {
+        aw_guardPanel_GO.SetActive(false);
+        aw_shienPanel_GO.SetActive(false);
+        aw_movePanel_GO.SetActive(false);
+        aw_atkPanel_GO.SetActive(false);
     }
 
     //////////////////////////////////////////////////////////////////////
     /// <summary>
-    /// Properties
+    /// OnEvents
     /// </summary>
     //////////////////////////////////////////////////////////////////////
     #region OnEvents
 
+    //-------------------------------------------------- playerboard panel
+    public void OnPbPanel_Round(int index)
+    {
+        if (mainGameState != GameState_En.OnPlayerboardPanel)
+        {
+            return;
+        }
+        if (ExistAnyGameStates(GameState_En.OnActionWindowPanel, GameState_En.OnCardDetailPanel))
+        {
+            return;
+        }
+
+        MoveToActionWindow(index);
+    }
+
     //-------------------------------------------------- playerboard
     public void On_Pb_ToBattleboard()
     {
-
+        MoveToBattleboard();
     }
 
     public void On_Pb_ToMiharidai()
     {
-
+        MoveToMiharidai();
     }
 
     public void On_Pb_ToBattlePhase()
     {
-
+        
     }
 
     //-------------------------------------------------- action window
     public void On_Aw_Update()
     {
-
+        RemoveGameStates(GameState_En.OnActionWindowPanel);
+        SetActivePanel(GameState_En.OnActionWindowPanel, false);
     }
 
     public void On_Aw_BUnitUI(int playerID_pr, int index_pr)
     {
+        //
+        UnitCard selectedUnit_Cp = player_Cps[playerID_pr].bUnit_Cps[index_pr];
 
+        //
+        MoveToCardDetail(playerID_pr, selectedUnit_Cp);
     }
 
     public void On_Aw_GuardBtn()
     {
-
+        DisableActionWindowActionPanels();
+        aw_guardPanel_GO.SetActive(true);
     }
 
     public void On_Aw_ShienBtn()
     {
-
+        DisableActionWindowActionPanels();
+        aw_shienPanel_GO.SetActive(true);
     }
 
     public void On_Aw_MoveBtn()
     {
-
+        DisableActionWindowActionPanels();
+        aw_movePanel_GO.SetActive(true);
     }
 
     public void On_Aw_AtkBtn()
     {
-
+        DisableActionWindowActionPanels();
+        aw_atkPanel_GO.SetActive(true);
     }
 
     public void On_Aw_Gu_Inc()
@@ -536,34 +710,37 @@ public class UI_StrPhase : MonoBehaviour
     //-------------------------------------------------- miharidai
     public void On_Md_ToPlayerboard()
     {
-
+        MoveToPlayerboard();
     }
 
     public void On_Md_ToBattleboard()
     {
-
+        MoveToBattleboard();
     }
 
     //-------------------------------------------------- battleboard
     public void On_Bb_Unit(int playerID_pr, int index_pr)
     {
+        UnitCard selectedUnit_Cp_tp = player_Cps[playerID_pr].bUnit_Cps[index_pr];
 
+        MoveToCardDetail(playerID_pr, selectedUnit_Cp_tp);
     }
 
     public void On_Bb_ToMiharidai()
     {
-
+        MoveToMiharidai();
     }
 
     public void On_Bb_ToPlayerboard()
     {
-
+        MoveToPlayerboard();
     }
 
     //-------------------------------------------------- card detail
     public void On_Cd_Close()
     {
-
+        RemoveGameStates(GameState_En.OnCardDetailPanel);
+        SetActivePanel(GameState_En.OnCardDetailPanel, false);
     }
 
     #endregion

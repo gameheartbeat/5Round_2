@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class Controller_StrPhase : MonoBehaviour
 {
@@ -29,7 +30,7 @@ public class Controller_StrPhase : MonoBehaviour
 
     //-------------------------------------------------- serialize fields
     [SerializeField]
-    UI_StrPhase strUI_Cp;
+    public UI_StrPhase strUI_Cp;
 
     //-------------------------------------------------- public fields
     [ReadOnly]
@@ -39,6 +40,10 @@ public class Controller_StrPhase : MonoBehaviour
     Controller_Phases controller_Cp;
 
     List<Player_Phases> player_Cps = new List<Player_Phases>();
+
+    Player_Phases localPlayer_Cp, otherPlayer_Cp;
+
+    Transform cam_Tf;
 
     #endregion
 
@@ -189,6 +194,14 @@ public class Controller_StrPhase : MonoBehaviour
     void SetComponents()
     {
         controller_Cp = GameObject.FindWithTag("GameController").GetComponent<Controller_Phases>();
+
+        player_Cps = controller_Cp.player_Cps;
+
+        localPlayer_Cp = controller_Cp.localPlayer_Cp;
+
+        otherPlayer_Cp = controller_Cp.otherPlayer_Cp;
+
+        cam_Tf = controller_Cp.cam_Tf;
     }
 
     //--------------------------------------------------
@@ -209,12 +222,37 @@ public class Controller_StrPhase : MonoBehaviour
     {
         mainGameState = GameState_En.PhaseStarted;
 
-
+        //
+        strUI_Cp.MoveToPlayerboard();
 
         //
-        mainGameState = GameState_En.PhaseFinished;
+        //mainGameState = GameState_En.PhaseFinished;
 
         yield return null;
+    }
+
+    //-------------------------------------------------- move camera
+    public void MoveCamToPlayerboard()
+    {
+        UnityEvent unityEvent = new UnityEvent();
+        unityEvent.AddListener(OnComplete_MovecamToMiharidai);
+        TargetTweening.TranslateGameObject(cam_Tf, localPlayer_Cp.playerBLookPoint_Tf, unityEvent);
+    }
+
+    void OnComplete_MovecamToPlayerboard()
+    {
+
+    }
+
+    public void MoveCamToMiharidai()
+    {
+        UnityEvent unityEvent = new UnityEvent();
+        unityEvent.AddListener(OnComplete_MovecamToMiharidai);
+        TargetTweening.TranslateGameObject(cam_Tf, localPlayer_Cp.miharidaiLookPoint_Tf, unityEvent);
+    }
+    void OnComplete_MovecamToMiharidai()
+    {
+
     }
 
 }
