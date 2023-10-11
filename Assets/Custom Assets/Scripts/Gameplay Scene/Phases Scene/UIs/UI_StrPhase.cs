@@ -337,24 +337,11 @@ public class UI_StrPhase : MonoBehaviour
         aw_atkPanel_GO.SetActive(false);
 
         //
-        UnitUI_Phases[] aw_sh_mUnitUI_Cps_tp = aw_sh_mihariUnitsGroup_GO.GetComponentsInChildren<UnitUI_Phases>();
-        for (int i = 0; i < aw_sh_mUnitUI_Cps_tp.Length; i++)
-        {
-            aw_sh_mUnit_Cps.Add(aw_sh_mUnitUI_Cps_tp[i]);
-        }
+        aw_sh_mUnit_Cps = new List<UnitUI_Phases>(aw_sh_mihariUnitsGroup_GO.GetComponentsInChildren<UnitUI_Phases>());
 
         //
-        UnitUI_Phases[] aw_p1bUnitUI_Cps_tp = aw_p1bUnitsPanel_GO.GetComponentsInChildren<UnitUI_Phases>();
-        for (int i = 0; i < aw_p1bUnitUI_Cps_tp.Length; i++)
-        {
-            aw_p1bUnitUI_Cps.Add(aw_p1bUnitUI_Cps_tp[i]);
-        }
-
-        UnitUI_Phases[] aw_p2bUnitUI_Cps_tp = aw_p2bUnitsPanel_GO.GetComponentsInChildren<UnitUI_Phases>();
-        for (int i = 0; i < aw_p2bUnitUI_Cps_tp.Length; i++)
-        {
-            aw_p2bUnitUI_Cps.Add(aw_p2bUnitUI_Cps_tp[i]);
-        }
+        aw_p1bUnitUI_Cps = new List<UnitUI_Phases>(aw_p1bUnitsPanel_GO.GetComponentsInChildren<UnitUI_Phases>());
+        aw_p2bUnitUI_Cps = new List<UnitUI_Phases>(aw_p2bUnitsPanel_GO.GetComponentsInChildren<UnitUI_Phases>());
 
         //
         RefreshActionWindowShienUnits();
@@ -406,9 +393,9 @@ public class UI_StrPhase : MonoBehaviour
             bb_p1UnitUI_Cps[i].frontSprite = player_Cps[0].bUnit_Cps[i].frontSide;
         }
 
-        for (int i = 0; i < aw_p2bUnitUI_Cps.Count; i++)
+        for (int i = 0; i < bb_p2UnitUI_Cps.Count; i++)
         {
-            bb_p1UnitUI_Cps[i].frontSprite = player_Cps[1].bUnit_Cps[i].frontSide;
+            bb_p2UnitUI_Cps[i].frontSprite = player_Cps[1].bUnit_Cps[i].frontSide;
         }
     }
 
