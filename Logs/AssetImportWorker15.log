@@ -258,3 +258,223 @@ Received Import Request.
   path: Assets/Custom Assets/Textures/Arrow/Red Arrow.png
   artifactKey: Guid(ae2f283eafb01c8408a0fee01fb4007d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
 Start importing Assets/Custom Assets/Textures/Arrow/Red Arrow.png using Guid(ae2f283eafb01c8408a0fee01fb4007d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '1b61cc2e64facd8ed29930a6389b9e2e') in 0.019989 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 2981.301538 seconds.
+  path: Assets/Custom Assets/Prefabs/Gameplay/Phases Scene/Item UI.prefab
+  artifactKey: Guid(2c829601498f459458c6fe339958b8a9) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Custom Assets/Prefabs/Gameplay/Phases Scene/Item UI.prefab using Guid(2c829601498f459458c6fe339958b8a9) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '77b02e2ad26d6b576afa7aee6e2cd490') in 0.005123 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 6.844882 seconds.
+  path: Assets/Custom Assets/Prefabs/Gameplay/Phases Scene/Item UI.prefab
+  artifactKey: Guid(2c829601498f459458c6fe339958b8a9) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Custom Assets/Prefabs/Gameplay/Phases Scene/Item UI.prefab using Guid(2c829601498f459458c6fe339958b8a9) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '36703da15915920fd4bb4265634c3125') in 0.004163 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 9.769176 seconds.
+  path: Assets/Custom Assets/Textures/Resources/Sprites/ItemCards/item_25.png
+  artifactKey: Guid(e403b77c774ddc242af2f62246e7dfab) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Custom Assets/Textures/Resources/Sprites/ItemCards/item_25.png using Guid(e403b77c774ddc242af2f62246e7dfab) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'f9bb28f39b1055c160960e6fd7362522') in 0.145634 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000025 seconds.
+  path: Assets/Custom Assets/Textures/Resources/Sprites/ItemCards/item_30.png
+  artifactKey: Guid(41ca7f8d00f5c8549906958cee85dcea) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Custom Assets/Textures/Resources/Sprites/ItemCards/item_30.png using Guid(41ca7f8d00f5c8549906958cee85dcea) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '4047e4eb42b5b15a5dc6a8ea85985dfb') in 0.139588 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000031 seconds.
+  path: Assets/Custom Assets/Textures/Resources/Sprites/ItemCards/item_33.png
+  artifactKey: Guid(b6c411fe611df31479b8d6025edf3f12) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Custom Assets/Textures/Resources/Sprites/ItemCards/item_33.png using Guid(b6c411fe611df31479b8d6025edf3f12) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'f951a4432f64bb80e677254e03b55e17') in 0.170941 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000026 seconds.
+  path: Assets/Custom Assets/Textures/Resources/Sprites/ItemCards/item_31.png
+  artifactKey: Guid(0e4bf43bc61246a438c6834148948d32) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Custom Assets/Textures/Resources/Sprites/ItemCards/item_31.png using Guid(0e4bf43bc61246a438c6834148948d32) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '0e4bbf195c6b11333a8f49a94a1586ab') in 0.079012 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000025 seconds.
+  path: Assets/Custom Assets/Textures/Resources/Sprites/ItemCards/item_32.png
+  artifactKey: Guid(10367baf2e0e52841a8dc4758e381c47) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Custom Assets/Textures/Resources/Sprites/ItemCards/item_32.png using Guid(10367baf2e0e52841a8dc4758e381c47) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '7d5cd18868fbeca5cc3501b3e5a845aa') in 0.114675 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000019 seconds.
+  path: Assets/Custom Assets/Textures/Resources/Sprites/ItemCards/item_r1.png
+  artifactKey: Guid(5e51c1940d48d3c499f678d4b155c616) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Custom Assets/Textures/Resources/Sprites/ItemCards/item_r1.png using Guid(5e51c1940d48d3c499f678d4b155c616) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '662f0070432df95d9875de2e4728d02c') in 0.164891 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000023 seconds.
+  path: Assets/Custom Assets/Textures/Resources/Sprites/ItemCards/item_r2.png
+  artifactKey: Guid(df0650cdec71dd3448ce836615ea8b7e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Custom Assets/Textures/Resources/Sprites/ItemCards/item_r2.png using Guid(df0650cdec71dd3448ce836615ea8b7e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '2a8d30d25b63a0652a611a4c98f780d4') in 0.162915 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000015 seconds.
+  path: Assets/Custom Assets/Textures/Resources/Sprites/ItemCards/item_27.png
+  artifactKey: Guid(3f48e41ed81c2d648a910ca5b7147cf5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Custom Assets/Textures/Resources/Sprites/ItemCards/item_27.png using Guid(3f48e41ed81c2d648a910ca5b7147cf5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '0fa20cee6072ceec103d9c394b5dd293') in 0.159929 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.704368 seconds.
+  path: Assets/Custom Assets/Textures/Resources/Sprites/ItemCards/item_13.png
+  artifactKey: Guid(260e43a3b6266fc48935520e4808e1e5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Custom Assets/Textures/Resources/Sprites/ItemCards/item_13.png using Guid(260e43a3b6266fc48935520e4808e1e5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'f1d338587b29096543daf4dd5a98927c') in 0.184652 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000021 seconds.
+  path: Assets/Custom Assets/Textures/Resources/Sprites/ItemCards/item_12.png
+  artifactKey: Guid(ecfe453126b5f3b4fb442a802c10a340) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Custom Assets/Textures/Resources/Sprites/ItemCards/item_12.png using Guid(ecfe453126b5f3b4fb442a802c10a340) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '0b5488d176e5aa590ee58d73659e434b') in 0.176093 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000023 seconds.
+  path: Assets/Custom Assets/Textures/Resources/Sprites/ItemCards/item_18.png
+  artifactKey: Guid(435ccca871ff0054d8b1713cfb88da29) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Custom Assets/Textures/Resources/Sprites/ItemCards/item_18.png using Guid(435ccca871ff0054d8b1713cfb88da29) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'b1c17958b808fbc20ed50f56cea7891b') in 0.172547 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000021 seconds.
+  path: Assets/Custom Assets/Textures/Resources/Sprites/ItemCards/item_4.png
+  artifactKey: Guid(3ac5c28411ea07642be2f51af04cb594) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Custom Assets/Textures/Resources/Sprites/ItemCards/item_4.png using Guid(3ac5c28411ea07642be2f51af04cb594) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '2ef76d8eff1a33953ebcdc2b05dfb876') in 0.161635 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000020 seconds.
+  path: Assets/Custom Assets/Textures/Resources/Sprites/ItemCards/item_10.png
+  artifactKey: Guid(d7d15df87eecfd247b33b96115f38dd9) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Custom Assets/Textures/Resources/Sprites/ItemCards/item_10.png using Guid(d7d15df87eecfd247b33b96115f38dd9) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '1b1cf55501577bbabf4a455cbc993bf4') in 0.119225 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000023 seconds.
+  path: Assets/Custom Assets/Textures/Resources/Sprites/ItemCards/item_22.png
+  artifactKey: Guid(f088c3aa1f9fe5140a0358aec4b84db3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Custom Assets/Textures/Resources/Sprites/ItemCards/item_22.png using Guid(f088c3aa1f9fe5140a0358aec4b84db3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'a93d40515d0ceaac36bf7a0cc39dfabb') in 0.116382 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000025 seconds.
+  path: Assets/Custom Assets/Textures/Resources/Sprites/ItemCards/item_1.png
+  artifactKey: Guid(60b8bf06d3c97554596ab2c9b7a4d4f7) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Custom Assets/Textures/Resources/Sprites/ItemCards/item_1.png using Guid(60b8bf06d3c97554596ab2c9b7a4d4f7) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '42a94b208a3c668f732cc70ba9d1d89c') in 0.152933 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000019 seconds.
+  path: Assets/Custom Assets/Textures/Resources/Sprites/ItemCards/item_19.png
+  artifactKey: Guid(7c8b90071ea82cd45b333eae4e2fcc14) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Custom Assets/Textures/Resources/Sprites/ItemCards/item_19.png using Guid(7c8b90071ea82cd45b333eae4e2fcc14) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'a48843cd470a352ebee417fa3e043b9c') in 0.159999 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000028 seconds.
+  path: Assets/Custom Assets/Textures/Resources/Sprites/ItemCards/item_16.png
+  artifactKey: Guid(7840d62c55442714396712aaf72487d7) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Custom Assets/Textures/Resources/Sprites/ItemCards/item_16.png using Guid(7840d62c55442714396712aaf72487d7) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'c0f76929d269e70a473e6dea8de5bc12') in 0.149049 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000017 seconds.
+  path: Assets/Custom Assets/Textures/Resources/Sprites/ItemCards/item_24.png
+  artifactKey: Guid(d041d6da45492484bb7fee3de48401ec) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Custom Assets/Textures/Resources/Sprites/ItemCards/item_24.png using Guid(d041d6da45492484bb7fee3de48401ec) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'a75549fee3ce7b83b0c2aa9079db95a9') in 0.158093 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000018 seconds.
+  path: Assets/Custom Assets/Textures/Resources/Sprites/ItemCards/item_15.png
+  artifactKey: Guid(763027d06fd0d9542b7b72a63ff92e5c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Custom Assets/Textures/Resources/Sprites/ItemCards/item_15.png using Guid(763027d06fd0d9542b7b72a63ff92e5c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '76d82eae9f91b503f7b3980df6ed7767') in 0.143832 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000025 seconds.
+  path: Assets/Custom Assets/Textures/Resources/Sprites/ItemCards/item_2.png
+  artifactKey: Guid(613248efb2fe9384b857a40c89843aa5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Custom Assets/Textures/Resources/Sprites/ItemCards/item_2.png using Guid(613248efb2fe9384b857a40c89843aa5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '9e70f043482e08f1e2b9a347c1d03d11') in 0.165656 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 30.236641 seconds.
+  path: Assets/Custom Assets/Prefabs/Gameplay/Phases Scene/Item UI.prefab
+  artifactKey: Guid(2c829601498f459458c6fe339958b8a9) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Custom Assets/Prefabs/Gameplay/Phases Scene/Item UI.prefab using Guid(2c829601498f459458c6fe339958b8a9) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '77227066815e1afec47f57b3ebbd33a7') in 0.003622 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 17.768208 seconds.
+  path: Assets/Custom Assets/Prefabs/Gameplay/Phases Scene/ActionW_Actions UnitUI.prefab
+  artifactKey: Guid(3830fadcc8b32004cb00d2ec8302d902) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Custom Assets/Prefabs/Gameplay/Phases Scene/ActionW_Actions UnitUI.prefab using Guid(3830fadcc8b32004cb00d2ec8302d902) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '666ed3cc70d5e97426d52c82f04c1f75') in 0.003790 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 33.136666 seconds.
+  path: Assets/Custom Assets/Prefabs/Gameplay/Phases Scene/Item UI.prefab
+  artifactKey: Guid(2c829601498f459458c6fe339958b8a9) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Custom Assets/Prefabs/Gameplay/Phases Scene/Item UI.prefab using Guid(2c829601498f459458c6fe339958b8a9) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '31db0be7848e7562fe168a3744f9b56d') in 0.003802 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.984982 seconds.
+  path: Assets/Custom Assets/Prefabs/Gameplay/Phases Scene/Item UI.prefab
+  artifactKey: Guid(2c829601498f459458c6fe339958b8a9) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Custom Assets/Prefabs/Gameplay/Phases Scene/Item UI.prefab using Guid(2c829601498f459458c6fe339958b8a9) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '32c9c6c482e0e0e74c278f5b1615b727') in 0.003604 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 6.187927 seconds.
+  path: Assets/Custom Assets/Prefabs/Gameplay/Phases Scene/Item UI.prefab
+  artifactKey: Guid(2c829601498f459458c6fe339958b8a9) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Custom Assets/Prefabs/Gameplay/Phases Scene/Item UI.prefab using Guid(2c829601498f459458c6fe339958b8a9) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '683720100c241d92ae4caa2e204c1221') in 0.003704 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 822.204631 seconds.
+  path: Assets/Custom Assets/Textures/Resources/Sprites/TakaraCards/t_01.png
+  artifactKey: Guid(3f507fd84dfd2c04fa54b549c9b38485) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Custom Assets/Textures/Resources/Sprites/TakaraCards/t_01.png using Guid(3f507fd84dfd2c04fa54b549c9b38485) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'deac77c6833b41bafb8649f95471ea79') in 0.129750 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000022 seconds.
+  path: Assets/Custom Assets/Textures/Resources/Sprites/TakaraCards/takara_16.png
+  artifactKey: Guid(d3d5175f1376e494fa41823f15ade959) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Custom Assets/Textures/Resources/Sprites/TakaraCards/takara_16.png using Guid(d3d5175f1376e494fa41823f15ade959) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '12d73f6b088c17eb770be458421379e1') in 0.183323 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000030 seconds.
+  path: Assets/Custom Assets/Textures/Resources/Sprites/TakaraCards/takara_17.png
+  artifactKey: Guid(156b3d9aa60b33a469d116e2e5a91407) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Custom Assets/Textures/Resources/Sprites/TakaraCards/takara_17.png using Guid(156b3d9aa60b33a469d116e2e5a91407) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '164d2989928221c656d433c2ce664179') in 0.152446 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000026 seconds.
+  path: Assets/Custom Assets/Textures/Resources/Sprites/TakaraCards/takara_2.png
+  artifactKey: Guid(26e4a3f28af31974c9c21af114fa1d82) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Custom Assets/Textures/Resources/Sprites/TakaraCards/takara_2.png using Guid(26e4a3f28af31974c9c21af114fa1d82) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'e31c218de6177f5de2a3450b059ea551') in 0.099150 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000019 seconds.
+  path: Assets/Custom Assets/Textures/Resources/Sprites/TakaraCards/takara_12.png
+  artifactKey: Guid(d87c1fdb0bffe27438ce2e85e995fab1) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Custom Assets/Textures/Resources/Sprites/TakaraCards/takara_12.png using Guid(d87c1fdb0bffe27438ce2e85e995fab1) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'b0a4aa16b448fad6660aa9081f34b217') in 0.138766 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000023 seconds.
+  path: Assets/Custom Assets/Textures/Resources/Sprites/TakaraCards/takara_8.png
+  artifactKey: Guid(2084fcde76f9fe64882552baad46c666) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Custom Assets/Textures/Resources/Sprites/TakaraCards/takara_8.png using Guid(2084fcde76f9fe64882552baad46c666) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'e32b4a19a72c01c7f4086f08fec272bd') in 0.162882 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000026 seconds.
+  path: Assets/Custom Assets/Textures/Resources/Sprites/TakaraCards/takara_3.png
+  artifactKey: Guid(2cca521a73ba72e4985a0a2bcd20793b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Custom Assets/Textures/Resources/Sprites/TakaraCards/takara_3.png using Guid(2cca521a73ba72e4985a0a2bcd20793b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '635e21e2b614058f1971847cb1a7b36d') in 0.113640 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000018 seconds.
+  path: Assets/Custom Assets/Textures/Resources/Sprites/TakaraCards/takara_6.png
+  artifactKey: Guid(f6fe0a2d6de242241898bf895049e0ca) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Custom Assets/Textures/Resources/Sprites/TakaraCards/takara_6.png using Guid(f6fe0a2d6de242241898bf895049e0ca) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '6ba56fcba9c0c18d82c133b17b18ec61') in 0.154101 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000025 seconds.
+  path: Assets/Custom Assets/Textures/Resources/Sprites/TakaraCards/takara_11.png
+  artifactKey: Guid(3cc982c100427994c9090ac6181e0de9) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Custom Assets/Textures/Resources/Sprites/TakaraCards/takara_11.png using Guid(3cc982c100427994c9090ac6181e0de9) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '7825e387434c2b507002d4c9b7a94d34') in 0.131913 seconds 
+Editor requested this worker to shutdown with reason: Scaling down because of idle timeout
+AssetImportWorker is now disconnected from the server
+Process exiting
+Exiting without the bug reporter. Application will terminate with return code 0
