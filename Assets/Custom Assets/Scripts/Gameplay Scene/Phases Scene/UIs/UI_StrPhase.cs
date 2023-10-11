@@ -399,4 +399,173 @@ public class UI_StrPhase : MonoBehaviour
         }
     }
 
+    //////////////////////////////////////////////////////////////////////
+    /// <summary>
+    /// Properties
+    /// </summary>
+    //////////////////////////////////////////////////////////////////////
+    #region OnEvents
+
+    //-------------------------------------------------- playerboard
+    public void On_Pb_ToBattleboard()
+    {
+
+    }
+
+    public void On_Pb_ToMiharidai()
+    {
+
+    }
+
+    public void On_Pb_ToBattlePhase()
+    {
+
+    }
+
+    //-------------------------------------------------- action window
+    public void On_Aw_Update()
+    {
+
+    }
+
+    public void On_Aw_BUnitUI(int playerID_pr, int index_pr)
+    {
+
+    }
+
+    public void On_Aw_GuardBtn()
+    {
+
+    }
+
+    public void On_Aw_ShienBtn()
+    {
+
+    }
+
+    public void On_Aw_MoveBtn()
+    {
+
+    }
+
+    public void On_Aw_AtkBtn()
+    {
+
+    }
+
+    public void On_Aw_Gu_Inc()
+    {
+
+    }
+
+    public void On_Aw_Gu_Dec()
+    {
+
+    }
+
+    public void On_Aw_Sh_SelectShienUnit()
+    {
+
+    }
+
+    public void On_Aw_Sh_Reset()
+    {
+
+    }
+
+    public void On_Aw_Sh_Van1()
+    {
+
+    }
+
+    public void On_Aw_Sh_Van2()
+    {
+
+    }
+
+    public void On_Aw_Sh_ShienUnitBtn(int index)
+    {
+
+    }
+
+    public void On_Aw_Mo_Van1()
+    {
+
+    }
+
+    public void On_Aw_Mo_Van2()
+    {
+
+    }
+
+    public void On_Aw_Mo_Rear1()
+    {
+
+    }
+
+    public void On_Aw_Mo_Rear2()
+    {
+
+    }
+
+    public void On_Aw_Mo_Rear3()
+    {
+
+    }
+
+    public void On_Aw_At_AllyVan1()
+    {
+
+    }
+
+    public void On_Aw_At_AllyVan2()
+    {
+
+    }
+
+    public void On_Aw_At_EnemyVan1()
+    {
+
+    }
+
+    public void On_Aw_At_EnemyVan2()
+    {
+
+    }
+
+    //-------------------------------------------------- miharidai
+    public void On_Md_ToPlayerboard()
+    {
+
+    }
+
+    public void On_Md_ToBattleboard()
+    {
+
+    }
+
+    //-------------------------------------------------- battleboard
+    public void On_Bb_Unit(int playerID_pr, int index_pr)
+    {
+
+    }
+
+    public void On_Bb_ToMiharidai()
+    {
+
+    }
+
+    public void On_Bb_ToPlayerboard()
+    {
+
+    }
+
+    //-------------------------------------------------- card detail
+    public void On_Cd_Close()
+    {
+
+    }
+
+    #endregion
+
 }
