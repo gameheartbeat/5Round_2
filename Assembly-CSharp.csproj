@@ -149,6 +149,7 @@
     <Compile Include="Assets\Custom Assets\Scripts\Gameplay Scene\Phases Scene\Controllers\Controller_StrPhase.cs" />
     <Compile Include="Assets\Custom Assets\Scripts\Gameplay Scene\Phases Scene\UIs\UI_StrPhase.cs" />
     <Compile Include="Assets\Custom Assets\Scripts\Gameplay Scene\Phases Scene\Player_Phases.cs" />
+    <Compile Include="Assets\Custom Assets\Scripts\Gameplay Scene\Phases Scene\UnitUI_Phases.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\ReadOnlyAttribute\README.txt" />
