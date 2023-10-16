@@ -36,6 +36,9 @@ public class Controller_StrPhase : MonoBehaviour
     [ReadOnly]
     public List<GameState_En> gameStates = new List<GameState_En>();
 
+    [ReadOnly]
+    public int selectedRoundIndex;
+
     //-------------------------------------------------- private fields
     Controller_Phases controller_Cp;
 
@@ -258,7 +261,7 @@ public class Controller_StrPhase : MonoBehaviour
     //-------------------------------------------------- Handle sp markers on playerboard
     public void On_IncSpMarker()
     {
-        localPlayer_Cp.IncSpMarker();
+        localPlayer_Cp.IncSpMarker(selectedRoundIndex);
 
         strUI_Cp.SetSpMarker(localPlayer_Cp.markersData.usedSpMarkers.count,
             localPlayer_Cp.markersData.totalSpMarkers.count);
@@ -266,11 +269,29 @@ public class Controller_StrPhase : MonoBehaviour
 
     public void On_DecSpMarker()
     {
-        //strUI_Cp.DecSpMarker();
+        localPlayer_Cp.DecSpMarker(selectedRoundIndex);
 
-        localPlayer_Cp.DecSpMarker();
+        strUI_Cp.SetSpMarker(localPlayer_Cp.markersData.usedSpMarkers.count,
+            localPlayer_Cp.markersData.totalSpMarkers.count);
     }
 
     //-------------------------------------------------- 
+    public void OnPbPanel_Round(int index)
+    {
+        //
+        if (strUI_Cp.mainGameState != UI_StrPhase.GameState_En.OnPlayerboardPanel)
+        {
+            return;
+        }
+        if (strUI_Cp.ExistAnyGameStates(UI_StrPhase.GameState_En.OnActionWindowPanel,
+            UI_StrPhase.GameState_En.OnCardDetailPanel))
+        {
+            return;
+        }
+        strUI_Cp.OnPbPanel_Round(index);
+
+        //
+        selectedRoundIndex = index;
+    }
 
 }

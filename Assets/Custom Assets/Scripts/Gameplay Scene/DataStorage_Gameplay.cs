@@ -94,9 +94,9 @@ public class TokenValue
 {
     public enum TokenType
     {
-        Shien1, Shien2,
-        Move1, Move2, Move3,
-        Attack1, Attack2, Attack3, Attack4,
+        Shien, Shien2,
+        Move,
+        Attack, Attack2
     }
 
     public TokenType type;
@@ -106,7 +106,12 @@ public class TokenValue
 
 public class TokenData
 {
-    public TokenValue usedShienToken, totalShienToken, usedMoveToken, totalMoveToken, usedAtkToken, totalAtkToken;
+    public TokenValue usedShienToken = new TokenValue();
+    public TokenValue totalShienToken = new TokenValue();
+    public TokenValue usedMoveToken = new TokenValue();
+    public TokenValue totalMoveToken = new TokenValue();
+    public TokenValue usedAtkToken = new TokenValue();
+    public TokenValue totalAtkToken = new TokenValue();
 }
 
 public class MarkerValue
@@ -123,8 +128,12 @@ public class MarkerValue
 
 public class MarkerData
 {
-    public MarkerValue usedSpMarkers, totalSpMarkers, usedGoldMarkers, totalGoldMarkers,
-        usedApMarkers, totalApMarkers, usedTurnMarkers, totalTurnMarkers;
+    public MarkerValue usedSpMarkers = new MarkerValue();
+    public MarkerValue totalSpMarkers = new MarkerValue();
+    public MarkerValue usedGoldMarkers = new MarkerValue();
+    public MarkerValue totalGoldMarkers = new MarkerValue();
+    public MarkerValue apMarkers = new MarkerValue();
+    public MarkerValue turnMarkers = new MarkerValue();
 }
 
 public class RoundValue
@@ -139,10 +148,10 @@ public class RoundValue
 
     public Transform token_Tf;
 
+    public TokenValue token;
+
     public List<Transform> marker_Tfs = new List<Transform>();
 
     public int spMarkerCount;
-
-    public TokenValue token;
 }
 

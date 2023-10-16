@@ -71,9 +71,9 @@ public class Player_Phases : MonoBehaviour
     //
     public List<RoundValue> roundsData = new List<RoundValue>();
 
-    public TokenData tokensData;
+    public TokenData tokensData = new TokenData();
 
-    public MarkerData markersData;
+    public MarkerData markersData = new MarkerData();
 
     //-------------------------------------------------- private fields
     Controller_Phases controller_Cp;
@@ -247,6 +247,10 @@ public class Player_Phases : MonoBehaviour
         //
         InitUnitCardDatas();
 
+        InitMarkersData();
+
+        InitTokensData();
+
         //
         InitBattleUnits();
 
@@ -321,15 +325,18 @@ public class Player_Phases : MonoBehaviour
         //
         for (int i = 0; i < round_Tfs.Count; i++)
         {
-            RoundValue round_Cp_tp = new RoundValue();
-            round_Cp_tp.roundPanel_Tf = round_Tfs[i];
-            round_Cp_tp.allyVan1_Tf = round_Tfs[i].GetChild(0);
-            round_Cp_tp.allyVan2_Tf = round_Tfs[i].GetChild(1);
-            round_Cp_tp.enemyVan1_Tf = round_Tfs[i].GetChild(2);
-            round_Cp_tp.enemyVan2_Tf = round_Tfs[i].GetChild(3);
-            round_Cp_tp.markersGroup_Tf = round_Tfs[i].GetChild(4);
+            RoundValue rndValue_tp = new RoundValue();
 
-            roundsData.Add(round_Cp_tp);
+            rndValue_tp.roundPanel_Tf = round_Tfs[i];
+            rndValue_tp.allyVan1_Tf = round_Tfs[i].GetChild(0);
+            rndValue_tp.allyVan2_Tf = round_Tfs[i].GetChild(1);
+            rndValue_tp.enemyVan1_Tf = round_Tfs[i].GetChild(2);
+            rndValue_tp.enemyVan2_Tf = round_Tfs[i].GetChild(3);
+            rndValue_tp.markersGroup_Tf = round_Tfs[i].GetChild(4);
+
+            rndValue_tp.index = i;
+
+            roundsData.Add(rndValue_tp);
         }
 
         //
@@ -347,26 +354,101 @@ public class Player_Phases : MonoBehaviour
         }
     }
 
+    //--------------------------------------------------
+    void InitMarkersData()
+    {
+        MarkerValue usedSpMarkers_tp = new MarkerValue();
+        usedSpMarkers_tp.type = MarkerValue.MarkerType.SP;
+        usedSpMarkers_tp.count = 0;
+        markersData.usedSpMarkers = usedSpMarkers_tp;
+
+        MarkerValue totalSpMarkers_tp = new MarkerValue();
+        totalSpMarkers_tp.type = MarkerValue.MarkerType.SP;
+        totalSpMarkers_tp.count = 1;
+        markersData.totalSpMarkers = totalSpMarkers_tp;
+
+        MarkerValue apMarkers_tp = new MarkerValue();
+        apMarkers_tp.type = MarkerValue.MarkerType.AP;
+        apMarkers_tp.count = 1;
+        markersData.apMarkers = apMarkers_tp;
+
+        MarkerValue turnMarkers_tp = new MarkerValue();
+        turnMarkers_tp.type = MarkerValue.MarkerType.Turn;
+        turnMarkers_tp.count = 1;
+        markersData.turnMarkers = turnMarkers_tp;
+
+        MarkerValue usedGoldMarkers_tp = new MarkerValue();
+        usedGoldMarkers_tp.type = MarkerValue.MarkerType.Gold;
+        usedGoldMarkers_tp.count = 0;
+        markersData.usedGoldMarkers = usedGoldMarkers_tp;
+
+        MarkerValue totalGoldMarkers_tp = new MarkerValue();
+        totalGoldMarkers_tp.type = MarkerValue.MarkerType.Gold;
+        totalGoldMarkers_tp.count = 1;
+        markersData.totalGoldMarkers = totalGoldMarkers_tp;
+    }
+
+    //--------------------------------------------------
+    void InitTokensData()
+    {
+        TokenValue usedShienToken_tp = new TokenValue();
+        usedShienToken_tp.type = TokenValue.TokenType.Shien;
+        usedShienToken_tp.count = 0;
+        tokensData.usedShienToken = usedShienToken_tp;
+
+        TokenValue totalShienToken_tp = new TokenValue();
+        totalShienToken_tp.type = TokenValue.TokenType.Shien;
+        totalShienToken_tp.count = 1;
+        tokensData.totalShienToken = totalShienToken_tp;
+
+        TokenValue usedMoveToken_tp = new TokenValue();
+        usedMoveToken_tp.type = TokenValue.TokenType.Move;
+        usedMoveToken_tp.count = 0;
+        tokensData.usedMoveToken = usedMoveToken_tp;
+
+        TokenValue totalMoveToken_tp = new TokenValue();
+        totalMoveToken_tp.type = TokenValue.TokenType.Move;
+        totalMoveToken_tp.count = 3;
+        tokensData.totalMoveToken = totalMoveToken_tp;
+
+        TokenValue usedAtkToken_tp = new TokenValue();
+        usedAtkToken_tp.type = TokenValue.TokenType.Attack;
+        usedAtkToken_tp.count = 0;
+        tokensData.usedAtkToken = usedAtkToken_tp;
+
+        TokenValue totalAtkToken_tp = new TokenValue();
+        totalAtkToken_tp.type = TokenValue.TokenType.Attack;
+        totalAtkToken_tp.count = 2;
+        tokensData.totalAtkToken = totalAtkToken_tp;
+    }
+
     #endregion
 
-    //-------------------------------------------------- handle tokens
-    public void SetTokenCount(TokenValue token_pr, int count_pr)
+    //-------------------------------------------------- Handle sp markers
+    public void IncSpMarker(int roundIndex_pr, int incCount_pr = 1)
     {
-
+        SetSpMarker(roundIndex_pr, incCount_pr);
     }
 
-    //-------------------------------------------------- Handle sp markers on playerboard
-    public void IncSpMarker(int incCount_pr = 1)
+    public void DecSpMarker(int roundIndex_pr, int decCount_pr = 1)
     {
-        
+        SetSpMarker(roundIndex_pr, -1 * decCount_pr);
     }
 
-    public void DecSpMarker(int decCount_pr = 1)
+    void SetSpMarker(int roundIndex_pr, int changeAmount_pr)
     {
+        //
+        roundsData[roundIndex_pr].spMarkerCount = Mathf.Clamp(
+            roundsData[roundIndex_pr].spMarkerCount + changeAmount_pr,
+            0, markersData.totalSpMarkers.count);
 
+        SetSpMarkersOnPlayerboard(roundIndex_pr, roundsData[roundIndex_pr].spMarkerCount);
+
+        //
+        markersData.usedSpMarkers.count = roundsData[roundIndex_pr].spMarkerCount;
     }
 
-    void SetSPMarkerToPlayerboard(int roundIndex_pr, int markerCount_pr)
+    void SetSpMarkersOnPlayerboard(int roundIndex_pr, int markerCount_pr)
     {
 
     }
@@ -381,7 +463,7 @@ public class Player_Phases : MonoBehaviour
     //--------------------------------------------------
     void OnClickRound(int index)
     {
-        controller_Cp.strController_Cp.strUI_Cp.OnPbPanel_Round(index);
+        controller_Cp.strController_Cp.OnPbPanel_Round(index);
     }
 
     #endregion
