@@ -211,6 +211,7 @@ public class Controller_StrPhase : MonoBehaviour
     void InitComponents()
     {
         strUI_Cp.Init();
+        SetSpMarkerUI();
     }
 
     #endregion
@@ -263,16 +264,38 @@ public class Controller_StrPhase : MonoBehaviour
     {
         localPlayer_Cp.IncSpMarker(selectedRoundIndex);
 
-        strUI_Cp.SetSpMarker(localPlayer_Cp.markersData.usedSpMarkers.count,
-            localPlayer_Cp.markersData.totalSpMarkers.count);
+        SetSpMarkerUI();
     }
 
     public void On_DecSpMarker()
     {
         localPlayer_Cp.DecSpMarker(selectedRoundIndex);
 
-        strUI_Cp.SetSpMarker(localPlayer_Cp.markersData.usedSpMarkers.count,
+        SetSpMarkerUI();
+    }
+
+    void SetSpMarkerUI()
+    {
+        strUI_Cp.SetSpMarkerText(localPlayer_Cp.markersData.usedSpMarkers.count,
             localPlayer_Cp.markersData.totalSpMarkers.count);
+
+        if (localPlayer_Cp.markersData.usedSpMarkers.count == 0)
+        {
+            strUI_Cp.aw_gu_decBtn_Cp.interactable = false;
+        }
+        else
+        {
+            strUI_Cp.aw_gu_decBtn_Cp.interactable = true;
+        }
+
+        if (localPlayer_Cp.markersData.usedSpMarkers.count == localPlayer_Cp.markersData.totalSpMarkers.count)
+        {
+            strUI_Cp.aw_gu_incBtn_Cp.interactable = false;
+        }
+        else
+        {
+            strUI_Cp.aw_gu_incBtn_Cp.interactable = true;
+        }
     }
 
     //-------------------------------------------------- 
