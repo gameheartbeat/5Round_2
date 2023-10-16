@@ -4,21 +4,6 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class Round_Cs
-{
-    public int index;
-
-    public Transform roundPanel_Tf;
-
-    public Transform allyVan1_Tf, allyVan2_Tf, enemyVan1_Tf, enemyVan2_Tf;
-
-    public Transform markersGroup_Tf;
-
-    public Transform token_Tf;
-
-    public List<Transform> marker_Tfs = new List<Transform>();
-}
-
 public class Player_Phases : MonoBehaviour
 {
 
@@ -83,7 +68,12 @@ public class Player_Phases : MonoBehaviour
     [ReadOnly]
     public List<UnitCard> mUnit_Cps = new List<UnitCard>();
 
-    public List<Round_Cs> rounds = new List<Round_Cs>();
+    //
+    public List<RoundValue> roundsData = new List<RoundValue>();
+
+    public TokenData tokensData;
+
+    public MarkerData markersData;
 
     //-------------------------------------------------- private fields
     Controller_Phases controller_Cp;
@@ -331,7 +321,7 @@ public class Player_Phases : MonoBehaviour
         //
         for (int i = 0; i < round_Tfs.Count; i++)
         {
-            Round_Cs round_Cp_tp = new Round_Cs();
+            RoundValue round_Cp_tp = new RoundValue();
             round_Cp_tp.roundPanel_Tf = round_Tfs[i];
             round_Cp_tp.allyVan1_Tf = round_Tfs[i].GetChild(0);
             round_Cp_tp.allyVan2_Tf = round_Tfs[i].GetChild(1);
@@ -339,7 +329,7 @@ public class Player_Phases : MonoBehaviour
             round_Cp_tp.enemyVan2_Tf = round_Tfs[i].GetChild(3);
             round_Cp_tp.markersGroup_Tf = round_Tfs[i].GetChild(4);
 
-            rounds.Add(round_Cp_tp);
+            roundsData.Add(round_Cp_tp);
         }
 
         //
@@ -359,12 +349,34 @@ public class Player_Phases : MonoBehaviour
 
     #endregion
 
+    //-------------------------------------------------- handle tokens
+    public void SetTokenCount(TokenValue token_pr, int count_pr)
+    {
+
+    }
+
+    //-------------------------------------------------- Handle sp markers on playerboard
+    public void IncSpMarker(int incCount_pr = 1)
+    {
+        
+    }
+
+    public void DecSpMarker(int decCount_pr = 1)
+    {
+
+    }
+
+    void SetSPMarkerToPlayerboard(int roundIndex_pr, int markerCount_pr)
+    {
+
+    }
+
     //////////////////////////////////////////////////////////////////////
     /// <summary>
     /// OnEvents
     /// </summary>
     //////////////////////////////////////////////////////////////////////
-    
+
     #region OnEvents
     //--------------------------------------------------
     void OnClickRound(int index)

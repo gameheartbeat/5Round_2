@@ -255,4 +255,22 @@ public class Controller_StrPhase : MonoBehaviour
 
     }
 
+    //-------------------------------------------------- Handle sp markers on playerboard
+    public void On_IncSpMarker()
+    {
+        localPlayer_Cp.IncSpMarker();
+
+        strUI_Cp.SetSpMarker(localPlayer_Cp.markersData.usedSpMarkers.count,
+            localPlayer_Cp.markersData.totalSpMarkers.count);
+    }
+
+    public void On_DecSpMarker()
+    {
+        //strUI_Cp.DecSpMarker();
+
+        localPlayer_Cp.DecSpMarker();
+    }
+
+    //-------------------------------------------------- 
+
 }

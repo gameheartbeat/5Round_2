@@ -89,3 +89,60 @@ public class ItemCardData
     public string effect;
 
 }
+
+public class TokenValue
+{
+    public enum TokenType
+    {
+        Shien1, Shien2,
+        Move1, Move2, Move3,
+        Attack1, Attack2, Attack3, Attack4,
+    }
+
+    public TokenType type;
+
+    public int count;
+}
+
+public class TokenData
+{
+    public TokenValue usedShienToken, totalShienToken, usedMoveToken, totalMoveToken, usedAtkToken, totalAtkToken;
+}
+
+public class MarkerValue
+{
+    public enum MarkerType
+    {
+        SP, AP, Gold, Turn
+    }
+
+    public MarkerType type;
+
+    public int count;
+}
+
+public class MarkerData
+{
+    public MarkerValue usedSpMarkers, totalSpMarkers, usedGoldMarkers, totalGoldMarkers,
+        usedApMarkers, totalApMarkers, usedTurnMarkers, totalTurnMarkers;
+}
+
+public class RoundValue
+{
+    public int index;
+
+    public Transform roundPanel_Tf;
+
+    public Transform allyVan1_Tf, allyVan2_Tf, enemyVan1_Tf, enemyVan2_Tf;
+
+    public Transform markersGroup_Tf;
+
+    public Transform token_Tf;
+
+    public List<Transform> marker_Tfs = new List<Transform>();
+
+    public int spMarkerCount;
+
+    public TokenValue token;
+}
+

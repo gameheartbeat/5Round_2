@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -549,6 +549,12 @@ public class UI_StrPhase : MonoBehaviour
         aw_atkPanel_GO.SetActive(false);
     }
 
+    //--------------------------------------------------
+    public void SetSpMarker(int totalSpCount_pr, int usedSpCount_pr)
+    {
+        aw_gu_spMarkerText_Cp.text = usedSpCount_pr + "/" + totalSpCount_pr + " 使用";
+    }
+
     //////////////////////////////////////////////////////////////////////
     /// <summary>
     /// OnEvents
@@ -629,12 +635,12 @@ public class UI_StrPhase : MonoBehaviour
 
     public void On_Aw_Gu_Inc()
     {
-
+        strController_Cp.On_IncSpMarker();
     }
 
     public void On_Aw_Gu_Dec()
     {
-
+        strController_Cp.On_DecSpMarker();
     }
 
     public void On_Aw_Sh_SelectShienUnit()
