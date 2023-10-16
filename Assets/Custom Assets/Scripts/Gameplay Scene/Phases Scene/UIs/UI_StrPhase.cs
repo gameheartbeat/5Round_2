@@ -550,7 +550,7 @@ public class UI_StrPhase : MonoBehaviour
     }
 
     //--------------------------------------------------
-    public void SetSpMarker(int totalSpCount_pr, int usedSpCount_pr)
+    public void SetSpMarkerText(int usedSpCount_pr, int totalSpCount_pr)
     {
         aw_gu_spMarkerText_Cp.text = usedSpCount_pr + "/" + totalSpCount_pr + " 使用";
     }
