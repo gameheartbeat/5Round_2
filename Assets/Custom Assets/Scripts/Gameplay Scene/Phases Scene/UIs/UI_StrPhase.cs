@@ -78,7 +78,7 @@ public class UI_StrPhase : MonoBehaviour
     public Text aw_mo_descText_Cp;
 
     [SerializeField]
-    public GameObject aw_mo_van1Bgd_GO, aw_mo_van2Bgd_GO, aw_mo_rear1Bgd_Cp, aw_mo_rear2Bgd_Cp, aw_mo_rear3Bgd_Cp;
+    public GameObject aw_mo_van1Bgd_GO, aw_mo_van2Bgd_GO, aw_mo_rear1Bgd_GO, aw_mo_rear2Bgd_GO, aw_mo_rear3Bgd_GO;
 
     [SerializeField]
     public RectTransform aw_mo_arrow_RT;
@@ -349,6 +349,25 @@ public class UI_StrPhase : MonoBehaviour
             aw_sh_mUnit_Cps[i].GetComponent<Button>().onClick.AddListener(() => On_Aw_Sh_ShienUnitBtn(index));
         }
 
+        aw_sh_van1Bgd_GO.SetActive(false);
+        aw_sh_van2Bgd_GO.SetActive(false);
+
+        //
+        aw_mo_van1Bgd_GO.SetActive(false);
+        aw_mo_van2Bgd_GO.SetActive(false);
+        aw_mo_rear1Bgd_GO.SetActive(false);
+        aw_mo_rear2Bgd_GO.SetActive(false);
+        aw_mo_rear3Bgd_GO.SetActive(false);
+
+        //
+        aw_at_allyVan1_GO.SetActive(false);
+        aw_at_allyVan2_GO.SetActive(false);
+        aw_at_enemyVan1_GO.SetActive(false);
+        aw_at_enemyVan2_GO.SetActive(false);
+
+        //
+        SetAwAtAtkCondText(true);
+
         //
         aw_p1bUnitUI_Cps = new List<UnitUI_Phases>(aw_p1bUnitsPanel_GO.GetComponentsInChildren<UnitUI_Phases>());
         for (int i = 0; i < aw_p1bUnitUI_Cps.Count; i++)
@@ -555,6 +574,54 @@ public class UI_StrPhase : MonoBehaviour
         aw_gu_spMarkerText_Cp.text = usedSpCount_pr + "/" + totalSpCount_pr + " 使用";
     }
 
+    //-------------------------------------------------- 
+    public void SetAwMoDescription(int moveVanUnitIndex_pr, int moveRearUnitIndex_pr)
+    {
+        if (moveVanUnitIndex_pr == -1 || moveRearUnitIndex_pr == -1)
+        {
+            aw_mo_descText_Cp.text = string.Empty;
+        }
+        else
+        {
+            aw_mo_descText_Cp.text = "" + moveVanUnitIndex_pr.ToString() + "" + "\r\n"
+                + "" + moveRearUnitIndex_pr.ToString() + "";
+        }
+    }
+
+    //--------------------------------------------------
+    public void SetAwAtDescription(int atkAllyIndex_pr, int atkEnemyIndex_pr)
+    {
+        if (atkAllyIndex_pr == -1 || atkEnemyIndex_pr == -1)
+        {
+            aw_at_descText_Cp.text = string.Empty;
+        }
+        else
+        {
+            aw_at_descText_Cp.text = "" + (atkAllyIndex_pr == 0 ? "" : "") + ""
+                + (atkEnemyIndex_pr == 0 ? "" : "");
+        }
+    }
+
+    //--------------------------------------------------
+    public void SetAwAtAtkCondText(bool isEmpty = false, int normalAp = 0, int spc1Ap = 0, int spc1Sp = 0,
+        int spc2Ap = 0, int spc2Sp = 0)
+    {
+        if (isEmpty)
+        {
+            aw_at_normalAtkText_Cp.text = "通常\r\n";
+            aw_at_spc1AtkText_Cp.text = "特殊1\r\n";
+            aw_at_spc2AtkText_Cp.text = "特殊2\r\n";
+        }
+        else
+        {
+            aw_at_normalAtkText_Cp.text = "通常\r\n" + "AP" + normalAp.ToString() + " SP0";
+            aw_at_spc1AtkText_Cp.text = "特殊1\r\n" + "AP" + spc1Ap.ToString() + " SP"
+                + spc1Sp.ToString();
+            aw_at_spc2AtkText_Cp.text = "特殊2\r\n" + "AP" + spc2Ap.ToString() + " SP"
+                + spc2Sp.ToString();
+        }
+    }
+
     //////////////////////////////////////////////////////////////////////
     /// <summary>
     /// OnEvents
@@ -596,6 +663,22 @@ public class UI_StrPhase : MonoBehaviour
     //-------------------------------------------------- action window
     public void On_Aw_Update()
     {
+        TokenType selectedTokenType_tp = TokenType.Null;
+        if (aw_shienPanel_GO.activeSelf)
+        {
+            selectedTokenType_tp = TokenType.Shien;
+        }
+        if (aw_movePanel_GO.activeSelf)
+        {
+            selectedTokenType_tp = TokenType.Move;
+        }
+        if (aw_atkPanel_GO.activeSelf)
+        {
+            selectedTokenType_tp = TokenType.Attack;
+        }
+        strController_Cp.On_Aw_Update(selectedTokenType_tp);
+
+        //
         RemoveGameStates(GameState_En.OnActionWindowPanel);
         SetActivePanel(GameState_En.OnActionWindowPanel, false);
     }
@@ -645,72 +728,75 @@ public class UI_StrPhase : MonoBehaviour
 
     public void On_Aw_Sh_SelectShienUnit()
     {
-
+        aw_sh_selectUnitsPanel_GO.SetActive(true);
     }
 
     public void On_Aw_Sh_Reset()
     {
-
+        strController_Cp.On_Aw_ShienUnitReset();
     }
 
     public void On_Aw_Sh_Van1()
     {
-
+        strController_Cp.On_Aw_ShienTargetVanUnitSelected(0);
     }
 
     public void On_Aw_Sh_Van2()
     {
-
+        strController_Cp.On_Aw_ShienTargetVanUnitSelected(1);
     }
 
     public void On_Aw_Sh_ShienUnitBtn(int index)
     {
+        aw_sh_selectUnitsPanel_GO.SetActive(false);
 
+        //
+        strController_Cp.On_Aw_ShienUnitSelected(index);
     }
 
     public void On_Aw_Mo_Van1()
     {
-
+        strController_Cp.On_Aw_MoveVanUnitSelected(0);
     }
 
     public void On_Aw_Mo_Van2()
     {
-
+        strController_Cp.On_Aw_MoveVanUnitSelected(1);
     }
 
     public void On_Aw_Mo_Rear1()
     {
-
+        strController_Cp.On_Aw_MoveRearUnitSelected(0);
     }
 
     public void On_Aw_Mo_Rear2()
     {
-
+        strController_Cp.On_Aw_MoveRearUnitSelected(1);
     }
 
     public void On_Aw_Mo_Rear3()
     {
-
+        strController_Cp.On_Aw_MoveRearUnitSelected(2);
     }
 
     public void On_Aw_At_AllyVan1()
     {
-
+        strController_Cp.On_Aw_AllyVanUnitSelected(0);
     }
 
     public void On_Aw_At_AllyVan2()
     {
-
+        strController_Cp.On_Aw_AllyVanUnitSelected(1);
     }
 
     public void On_Aw_At_EnemyVan1()
     {
-
+        strController_Cp.On_Aw_EnemyVanUnitSelected(0);
     }
 
     public void On_Aw_At_EnemyVan2()
     {
-
+        strController_Cp.On_Aw_EnemyVanUnitSelected(1);
     }
 
     //-------------------------------------------------- miharidai

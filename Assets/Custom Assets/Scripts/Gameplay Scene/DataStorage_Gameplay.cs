@@ -22,7 +22,6 @@ public class UnitCardsData
 
 public class UnitCardData
 {
-
     public int index;
     public string name;
 
@@ -48,8 +47,8 @@ public class UnitCardData
 
     public string uniqueAbility;
 
-    public string shien;
-
+    public string shienName;
+    public string shienDesc;
 }
 
 public class TakaraCardsData
@@ -90,15 +89,13 @@ public class ItemCardData
 
 }
 
+public enum TokenType
+{
+    Null, Shien, Shien2, Move, Attack, Attack2
+}
+
 public class TokenValue
 {
-    public enum TokenType
-    {
-        Shien, Shien2,
-        Move,
-        Attack, Attack2
-    }
-
     public TokenType type;
 
     public int count;
@@ -114,13 +111,13 @@ public class TokenData
     public TokenValue totalAtkToken = new TokenValue();
 }
 
+public enum MarkerType
+{
+    Null, SP, AP, Gold, Turn
+}
+
 public class MarkerValue
 {
-    public enum MarkerType
-    {
-        SP, AP, Gold, Turn
-    }
-
     public MarkerType type;
 
     public int count;

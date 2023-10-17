@@ -463,7 +463,7 @@ public class Player_Phases : MonoBehaviour
     //--------------------------------------------------
     void OnClickRound(int index)
     {
-        controller_Cp.strController_Cp.OnPbPanel_Round(index);
+        controller_Cp.strController_Cp.On_PbRoundPanel(index);
     }
 
     #endregion
