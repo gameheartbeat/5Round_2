@@ -87,7 +87,11 @@ public class UI_StrPhase : MonoBehaviour
     public Text aw_at_descText_Cp;
 
     [SerializeField]
-    public GameObject aw_at_allyVan1_GO, aw_at_allyVan2_GO, aw_at_enemyVan1_GO, aw_at_enemyVan2_GO;
+    public GameObject aw_at_allyVanBgd1_GO, aw_at_allyVanBgd2_GO, aw_at_enemyVanBgd1_GO, aw_at_enemyVanBgd2_GO;
+
+    [SerializeField]
+    public RectTransform aw_at_allyVan1ArrowPoint_RT, aw_at_allyVan2ArrowPoint_RT, aw_at_enemyVan1ArrowPoint_RT,
+        aw_at_enemyVan2ArrorPoint_RT;
 
     [SerializeField]
     public RectTransform aw_at_arrow_RT;
@@ -97,11 +101,11 @@ public class UI_StrPhase : MonoBehaviour
 
     // battleboard panel
     [SerializeField]
-    public Text bb_p1mihariText_Cp, bb_p1discardpileText_Cp, bb_p1kenText_Cp, bbp1_maText_Cp, bb_p1yumiText_Cp,
+    public Text bb_p1mihariText_Cp, bb_p1discardUnitText_Cp, bb_p1kenText_Cp, bbp1_maText_Cp, bb_p1yumiText_Cp,
         bb_p1fushiText_Cp, bb_p1ryuText_Cp;
 
     [SerializeField]
-    public Text bb_p2mihariText_Cp, bb_p2discardpileText_Cp, bb_p2kenText_Cp, bbp2_maText_Cp, bb_p2yumiText_Cp,
+    public Text bb_p2mihariText_Cp, bb_p2discardUnitText_Cp, bb_p2kenText_Cp, bbp2_maText_Cp, bb_p2yumiText_Cp,
         bb_p2fushiText_Cp, bb_p2ryuText_Cp;
 
     [SerializeField]
@@ -116,12 +120,15 @@ public class UI_StrPhase : MonoBehaviour
 
     [SerializeField]
     public Text cd_costText_Cp, cd_atrText_Cp, cd_maxHpText_Cp, cd_curHPText_Cp, cd_atkText_Cp, cd_agiText_Cp,
-        cd_defText_Cp, cd_accuracyCorrText_Cp, cd_CTCorrText_Cp, cd_normalAtkCorrText_Cp, cd_spcAtkCorrText_Cp,
+        cd_defCorrText_Cp, cd_accuracyCorrText_Cp, cd_CTCorrText_Cp, cd_normalAtkCorrText_Cp, cd_spcAtkCorrText_Cp,
         cd_dmgCorrText_Cp, cd_indirDmgCorrText_Cp, cd_noiseCorrText_Cp, cd_shienEffectCorrText_Cp,
         cd_diceEffectCorrText_Cp;
 
     [SerializeField]
     public RectTransform cd_equipItemsContent_RT;
+
+    [SerializeField]
+    GameObject cd_item_Pf;
 
     //-------------------------------------------------- public fields
     [ReadOnly]
@@ -144,10 +151,17 @@ public class UI_StrPhase : MonoBehaviour
     [ReadOnly]
     public List<UnitUI_Phases> bb_p2UnitUI_Cps = new List<UnitUI_Phases>();
 
+    [ReadOnly]
+    public List<GameObject> cd_equipItem_GOs = new List<GameObject>();
+
+    public float equipItemInterval = 0.1f;
+
     //-------------------------------------------------- private fields
     Controller_Phases controller_Cp;
 
     Controller_StrPhase strController_Cp;
+
+    DataManager_Gameplay dataManager_Cp;
 
     List<Player_Phases> player_Cps = new List<Player_Phases>();
 
@@ -307,6 +321,8 @@ public class UI_StrPhase : MonoBehaviour
 
         strController_Cp = controller_Cp.strController_Cp;
 
+        dataManager_Cp = controller_Cp.dataManager_Cp;
+
         player_Cps = controller_Cp.player_Cps;
 
         localPlayer_Cp = controller_Cp.localPlayer_Cp;
@@ -341,6 +357,9 @@ public class UI_StrPhase : MonoBehaviour
         aw_movePanel_GO.SetActive(false);
         aw_atkPanel_GO.SetActive(false);
 
+        // init guard panel
+        RefreshAwGuardPanel();
+
         //
         aw_sh_mUnit_Cps = new List<UnitUI_Phases>(aw_sh_mihariUnitsGroup_GO.GetComponentsInChildren<UnitUI_Phases>());
         for (int i = 0; i < aw_sh_mUnit_Cps.Count; i++)
@@ -349,24 +368,13 @@ public class UI_StrPhase : MonoBehaviour
             aw_sh_mUnit_Cps[i].GetComponent<Button>().onClick.AddListener(() => On_Aw_Sh_ShienUnitBtn(index));
         }
 
-        aw_sh_van1Bgd_GO.SetActive(false);
-        aw_sh_van2Bgd_GO.SetActive(false);
+        RefreshAwShienPanel();
 
         //
-        aw_mo_van1Bgd_GO.SetActive(false);
-        aw_mo_van2Bgd_GO.SetActive(false);
-        aw_mo_rear1Bgd_GO.SetActive(false);
-        aw_mo_rear2Bgd_GO.SetActive(false);
-        aw_mo_rear3Bgd_GO.SetActive(false);
+        RefreshAwMovePanel();
 
         //
-        aw_at_allyVan1_GO.SetActive(false);
-        aw_at_allyVan2_GO.SetActive(false);
-        aw_at_enemyVan1_GO.SetActive(false);
-        aw_at_enemyVan2_GO.SetActive(false);
-
-        //
-        SetAwAtAtkCondText(true);
+        RefreshAwAtkPanel();
 
         //
         aw_p1bUnitUI_Cps = new List<UnitUI_Phases>(aw_p1bUnitsPanel_GO.GetComponentsInChildren<UnitUI_Phases>());
@@ -384,9 +392,9 @@ public class UI_StrPhase : MonoBehaviour
         }
 
         //
-        RefreshActionWindowShienUnits();
+        RefreshAwMihariUnits();
 
-        RefreshActionWindowBattleUnits();
+        RefreshAwBattleUnits();
     }
 
     //--------------------------------------------------
@@ -408,22 +416,210 @@ public class UI_StrPhase : MonoBehaviour
         }
 
         //
+        RefreshBattleInfoPanel();
+
         RefreshBattleboardUnits();
     }
 
     #endregion
 
-    //--------------------------------------------------
-    public void RefreshActionWindowShienUnits()
+    //-------------------------------------------------- Reset action window UI panel
+    public void RefreshAwShienPanel()
     {
-        for (int i = 0; i < aw_sh_mUnit_Cps.Count; i++)
+        RoundValue roundValue = localPlayer_Cp.roundsData[strController_Cp.selectedRoundIndex];
+
+        if (roundValue.token.type != TokenType.Shien)
         {
-            aw_sh_mUnit_Cps[i].frontSprite = localPlayer_Cp.mUnit_Cps[i].unitCardData.frontSide;
+            aw_sh_descText_Cp.text = string.Empty;
+            aw_sh_unitText_Cp.text = "ユニット : None";
+            aw_sh_shienText_Cp.text = string.Empty;
+
+            aw_sh_van1Bgd_GO.SetActive(false);
+            aw_sh_van2Bgd_GO.SetActive(false);
+        }
+        else
+        {
+            UnitCardData unitData = roundValue.shienUnit_Cp.unitCardData;
+            aw_sh_descText_Cp.text = unitData.shienDesc;
+            aw_sh_unitText_Cp.text = "ユニット : " + unitData.name;
+            aw_sh_shienText_Cp.text = "しえん : " + unitData.shienName;
+
+            if (roundValue.targetUnitIndex == 0)
+            {
+                aw_sh_van1Bgd_GO.SetActive(true);
+                aw_sh_van2Bgd_GO.SetActive(false);
+            }
+            else if (roundValue.targetUnitIndex == 1)
+            {
+                aw_sh_van1Bgd_GO.SetActive(false);
+                aw_sh_van2Bgd_GO.SetActive(true);
+            }
         }
     }
 
-    //--------------------------------------------------
-    public void RefreshActionWindowBattleUnits()
+    public void RefreshAwMovePanel()
+    {
+        RoundValue roundValue = localPlayer_Cp.roundsData[strController_Cp.selectedRoundIndex];
+
+        if (roundValue.token.type != TokenType.Move)
+        {
+            aw_mo_descText_Cp.text = string.Empty;
+
+            aw_mo_van1Bgd_GO.SetActive(false);
+            aw_mo_van2Bgd_GO.SetActive(false);
+            aw_mo_rear1Bgd_GO.SetActive(false);
+            aw_mo_rear2Bgd_GO.SetActive(false);
+            aw_mo_rear3Bgd_GO.SetActive(false);
+
+            aw_mo_arrow_RT.gameObject.SetActive(false);
+        }
+        else
+        {
+            aw_mo_descText_Cp.text = roundValue.targetUnitIndex == 0 ? "赤" : "青" + "が\r\n"
+                + "後衛" + (roundValue.originUnitIndex + 1).ToString() + "と入替";
+
+            aw_mo_van1Bgd_GO.SetActive(false);
+            aw_mo_van2Bgd_GO.SetActive(false);
+            if (roundValue.targetUnitIndex == 0)
+            {
+                aw_mo_van1Bgd_GO.SetActive(true);
+            }
+            else if (roundValue.targetUnitIndex == 1)
+            {
+                aw_mo_van2Bgd_GO.SetActive(true);
+            }
+
+            aw_mo_rear1Bgd_GO.SetActive(false);
+            aw_mo_rear2Bgd_GO.SetActive(false);
+            aw_mo_rear3Bgd_GO.SetActive(false);
+            if (roundValue.originUnitIndex == 0)
+            {
+                aw_mo_rear1Bgd_GO.SetActive(true);
+            }
+            else if (roundValue.originUnitIndex == 1)
+            {
+                aw_mo_rear2Bgd_GO.SetActive(true);
+            }
+            else if (roundValue.originUnitIndex == 2)
+            {
+                aw_mo_rear3Bgd_GO.SetActive(true);
+            }
+
+            aw_mo_arrow_RT.gameObject.SetActive(false); // it should be fixed
+        }
+    }
+
+    public void RefreshAwAtkPanel()
+    {
+        RoundValue roundValue = localPlayer_Cp.roundsData[strController_Cp.selectedRoundIndex];
+
+        if (roundValue.token.type != TokenType.Attack)
+        {
+            aw_at_descText_Cp.text = string.Empty;
+
+            aw_at_allyVanBgd1_GO.SetActive(false);
+            aw_at_allyVanBgd2_GO.SetActive(false);
+            aw_at_enemyVanBgd1_GO.SetActive(false);
+            aw_at_enemyVanBgd2_GO.SetActive(false);
+            aw_at_arrow_RT.gameObject.SetActive(false);
+
+            aw_at_normalAtkText_Cp.text = "通常\r\n";
+            aw_at_spc1AtkText_Cp.text = "特殊1\r\n";
+            aw_at_spc2AtkText_Cp.text = "特殊2\r\n";
+        }
+        else
+        {
+            aw_at_descText_Cp.text = (roundValue.originUnitIndex == 0 ? "赤" : "紫") + "が"
+                + (roundValue.targetUnitIndex == 0 ? "青" : "緑") + "へ攻撃";
+
+            aw_at_allyVanBgd1_GO.SetActive(false);
+            aw_at_allyVanBgd2_GO.SetActive(false);
+            switch (roundValue.originUnitIndex)
+            {
+                case 0:
+                    aw_at_allyVanBgd1_GO.SetActive(true);
+                    break;
+                case 1:
+                    aw_at_allyVanBgd2_GO.SetActive(true);
+                    break;
+            }
+
+            aw_at_enemyVanBgd1_GO.SetActive(false);
+            aw_at_enemyVanBgd2_GO.SetActive(false);
+            switch (roundValue.targetUnitIndex)
+            {
+                case 0:
+                    aw_at_enemyVanBgd1_GO.SetActive(true);
+                    break;
+                case 1:
+                    aw_at_enemyVanBgd2_GO.SetActive(true);
+                    break;
+            }
+
+            aw_at_arrow_RT.gameObject.SetActive(false); // it will be fixed
+        }
+    }
+
+    //-------------------------------------------------- Refresh action window
+    public void RefreshAwGuardPanel()
+    {
+        //
+        aw_gu_guardDesText_Cp.text = "ラウンド中\r\n前衛DEF+" + localPlayer_Cp.markersData.usedSpMarkers.count;
+
+        //
+        aw_gu_spMarkerText_Cp.text = localPlayer_Cp.markersData.usedSpMarkers.count
+            + "/" + localPlayer_Cp.markersData.totalSpMarkers.count + " 使用";
+
+        //
+        if (localPlayer_Cp.markersData.usedSpMarkers.count == 0)
+        {
+            aw_gu_decBtn_Cp.interactable = false;
+        }
+        else
+        {
+            aw_gu_decBtn_Cp.interactable = true;
+        }
+
+        if (localPlayer_Cp.roundsData[strController_Cp.selectedRoundIndex].spMarkerCount == 0)
+        {
+            aw_gu_decBtn_Cp.interactable = false;
+        }
+
+        if (localPlayer_Cp.markersData.usedSpMarkers.count == localPlayer_Cp.markersData.totalSpMarkers.count)
+        {
+            aw_gu_incBtn_Cp.interactable = false;
+        }
+        else
+        {
+            aw_gu_incBtn_Cp.interactable = true;
+        }
+    }
+
+    public void RefreshAwMihariUnits()
+    {
+        //
+        for (int i = 0; i < aw_sh_mUnit_Cps.Count; i++)
+        {
+            aw_sh_mUnit_Cps[i].gameObject.SetActive(true);
+
+            if (localPlayer_Cp.mUnit_Cps[i] != null)
+            {
+                aw_sh_mUnit_Cps[i].frontSprite = localPlayer_Cp.mUnit_Cps[i].unitCardData.frontSide;
+            }
+        }
+
+        //
+        List<RoundValue> roundsData_tp = localPlayer_Cp.roundsData;
+        for (int i = 0; i < roundsData_tp.Count; i++)
+        {
+            if (roundsData_tp[i].token.type == TokenType.Shien)
+            {
+                aw_sh_mUnit_Cps[roundsData_tp[i].originUnitIndex].gameObject.SetActive(false);
+            }
+        }
+    }
+
+    public void RefreshAwBattleUnits()
     {
         for (int i = 0; i < aw_p1bUnitUI_Cps.Count; i++)
         {
@@ -451,6 +647,17 @@ public class UI_StrPhase : MonoBehaviour
     }
 
     //--------------------------------------------------
+    public void RefreshBattleInfoPanel()
+    {
+        //
+        bb_p1mihariText_Cp.text = "みはり : " + localPlayer_Cp.battleInfo.mihariUnitCount.ToString();
+        bb_p1discardUnitText_Cp.text = "捨て札 : " + localPlayer_Cp.battleInfo.discardUnitCount.ToString();
+
+        //
+        bb_p2mihariText_Cp.text = "みはり : " + otherPlayer_Cp.battleInfo.mihariUnitCount.ToString();
+        bb_p2discardUnitText_Cp.text = "捨て札 : " + otherPlayer_Cp.battleInfo.discardUnitCount.ToString();
+    }
+
     public void RefreshBattleboardUnits()
     {
         for (int i = 0; i < bb_p1UnitUI_Cps.Count; i++)
@@ -475,6 +682,85 @@ public class UI_StrPhase : MonoBehaviour
             {
                 bb_p2UnitUI_Cps[i].frontSprite = player_Cps[1].bUnit_Cps[i].frontSide;
             }
+        }
+    }
+
+    //--------------------------------------------------
+    void RefreshCardDetail(int playerID_pr, UnitCard unit_Cp_pr)
+    {
+        // set unit details
+        RefreshUnitDetail(playerID_pr, unit_Cp_pr);
+
+        // set equip item details
+        RefreshEquipItems(unit_Cp_pr);
+    }
+
+    void RefreshUnitDetail(int playerID_pr, UnitCard unit_Cp_pr)
+    {
+        UnitCardData unitData = unit_Cp_pr.unitCardData;
+
+        // set unit details
+        if (playerID_pr != localPlayerID && !unit_Cp_pr.placedPosture)
+        {
+            cd_cardImage_Cp.sprite = unitData.backSide;
+        }
+        else
+        {
+            cd_cardImage_Cp.sprite = unitData.frontSide;
+        }
+
+        cd_cardNameText_Cp.text = unitData.name;
+        cd_costText_Cp.text = "コスト : " + unitData.cost;
+        cd_atrText_Cp.text = "属性 : " + unit_Cp_pr.atr;
+        cd_maxHpText_Cp.text = "最大HP : " + unit_Cp_pr.maxHP;
+        cd_curHPText_Cp.text = "現HP : " + unit_Cp_pr.curHP;
+        cd_atkText_Cp.text = "ATK : " + unitData.atk + "+" + unit_Cp_pr.atkCorr;
+        cd_agiText_Cp.text = "AGI : " + unitData.agi + "+" + unit_Cp_pr.agiCorr;
+        cd_defCorrText_Cp.text = "DEF補正 : " + unit_Cp_pr.defCorr;
+        cd_accuracyCorrText_Cp.text = "命中補正 : " + unit_Cp_pr.accuracyCorr;
+        cd_CTCorrText_Cp.text = "CT値補正 : " + unit_Cp_pr.ctCorr;
+        cd_normalAtkCorrText_Cp.text = "通常攻撃補正 : " + unit_Cp_pr.normalAtkCorr;
+        cd_spcAtkCorrText_Cp.text = "特殊攻撃補正 : " + unit_Cp_pr.spcAtkCorr;
+        cd_dmgCorrText_Cp.text = "ダメ補正 : " + unit_Cp_pr.dmgCorr;
+        cd_indirDmgCorrText_Cp.text = "間接ダメ補正 : " + unit_Cp_pr.indirDmgCorr;
+        cd_noiseCorrText_Cp.text = "ごえい : " + unit_Cp_pr.noise;
+        cd_shienEffectCorrText_Cp.text = "しえん効果補正 : " + unit_Cp_pr.shienEffectCorr;
+        cd_diceEffectCorrText_Cp.text = "ダイス 効果補正 : " + unit_Cp_pr.diceEffectCorr;
+    }
+
+    void RefreshEquipItems(UnitCard unit_Cp_pr)
+    {
+        // clear old equip item datas
+        for (int i = 0; i < cd_equipItem_GOs.Count; i++)
+        {
+            Destroy(cd_equipItem_GOs[i]);
+        }
+        cd_equipItem_GOs.Clear();
+
+        // instant new equip items
+        for (int i = 0; i < unit_Cp_pr.equipItems.Count; i++)
+        {
+            ItemCardData itemData = unit_Cp_pr.equipItems[i];
+            GameObject item_GO_tp = Instantiate(cd_item_Pf, cd_equipItemsContent_RT);
+            cd_equipItem_GOs.Add(item_GO_tp);
+            item_GO_tp.GetComponent<ItemCard>().itemData = itemData;
+        }
+
+        // Initialize the initial X position to the left edge of the parent container
+        cd_equipItemsContent_RT.sizeDelta = new Vector2(equipItemInterval * (cd_equipItem_GOs.Count + 1)
+            + cd_item_Pf.GetComponent<RectTransform>().sizeDelta.x * cd_equipItem_GOs.Count,
+            cd_equipItemsContent_RT.sizeDelta.y);
+
+        float currentXPosition = equipItemInterval;
+        for (int i = 0; i < cd_equipItem_GOs.Count; i++)
+        {
+            RectTransform item_RT_tp = cd_equipItem_GOs[i].GetComponent<RectTransform>();
+
+            // Set the position of the item from left to right
+            item_RT_tp.anchoredPosition = new Vector2(currentXPosition, item_RT_tp.anchoredPosition.y);
+
+            // Update the currentXPosition for the next item
+            currentXPosition += item_RT_tp.sizeDelta.x + equipItemInterval;
         }
     }
 
@@ -512,7 +798,7 @@ public class UI_StrPhase : MonoBehaviour
         strController_Cp.MoveCamToPlayerboard();
     }
 
-    void MoveToActionWindow(int index)
+    public void MoveToActionWindow(int index)
     {
         AddGameStates(GameState_En.OnActionWindowPanel);
         SetActivePanel(GameState_En.OnActionWindowPanel, true);
@@ -520,6 +806,12 @@ public class UI_StrPhase : MonoBehaviour
         //
         DisableActionWindowActionPanels();
         aw_guardPanel_GO.SetActive(true);
+
+        //
+        RefreshAwGuardPanel();
+        RefreshAwShienPanel();
+        RefreshAwMovePanel();
+        RefreshAwAtkPanel();
     }
 
     void MoveToMiharidai()
@@ -544,15 +836,7 @@ public class UI_StrPhase : MonoBehaviour
 
     void MoveToCardDetail(int playerID_pr, UnitCard unit_Cp_pr)
     {
-        //
-        if (playerID_pr != localPlayerID && !unit_Cp_pr.placedPosture)
-        {
-            cd_cardImage_Cp.sprite = unit_Cp_pr.unitCardData.backSide;
-        }
-        else
-        {
-            cd_cardImage_Cp.sprite = unit_Cp_pr.unitCardData.frontSide;
-        }
+        RefreshCardDetail(playerID_pr, unit_Cp_pr);
 
         //
         AddGameStates(GameState_En.OnCardDetailPanel);
@@ -566,12 +850,6 @@ public class UI_StrPhase : MonoBehaviour
         aw_shienPanel_GO.SetActive(false);
         aw_movePanel_GO.SetActive(false);
         aw_atkPanel_GO.SetActive(false);
-    }
-
-    //--------------------------------------------------
-    public void SetSpMarkerText(int usedSpCount_pr, int totalSpCount_pr)
-    {
-        aw_gu_spMarkerText_Cp.text = usedSpCount_pr + "/" + totalSpCount_pr + " 使用";
     }
 
     //-------------------------------------------------- 
@@ -629,21 +907,6 @@ public class UI_StrPhase : MonoBehaviour
     //////////////////////////////////////////////////////////////////////
     #region OnEvents
 
-    //-------------------------------------------------- playerboard panel
-    public void OnPbPanel_Round(int index)
-    {
-        if (mainGameState != GameState_En.OnPlayerboardPanel)
-        {
-            return;
-        }
-        if (ExistAnyGameStates(GameState_En.OnActionWindowPanel, GameState_En.OnCardDetailPanel))
-        {
-            return;
-        }
-
-        MoveToActionWindow(index);
-    }
-
     //-------------------------------------------------- playerboard
     public void On_Pb_ToBattleboard()
     {
@@ -657,7 +920,7 @@ public class UI_StrPhase : MonoBehaviour
 
     public void On_Pb_ToBattlePhase()
     {
-        
+        strController_Cp.On_Pb_ToBattlePhase();
     }
 
     //-------------------------------------------------- action window
@@ -676,6 +939,7 @@ public class UI_StrPhase : MonoBehaviour
         {
             selectedTokenType_tp = TokenType.Attack;
         }
+
         strController_Cp.On_Aw_Update(selectedTokenType_tp);
 
         //
@@ -687,6 +951,12 @@ public class UI_StrPhase : MonoBehaviour
     {
         //
         UnitCard selectedUnit_Cp = player_Cps[playerID_pr].bUnit_Cps[index_pr];
+
+        // check valid to show
+        if (playerID_pr != localPlayerID && !selectedUnit_Cp.placedPosture)
+        {
+            return;
+        }
 
         //
         MoveToCardDetail(playerID_pr, selectedUnit_Cp);
@@ -718,12 +988,12 @@ public class UI_StrPhase : MonoBehaviour
 
     public void On_Aw_Gu_Inc()
     {
-        strController_Cp.On_IncSpMarker();
+        strController_Cp.On_Aw_IncSpMarker();
     }
 
     public void On_Aw_Gu_Dec()
     {
-        strController_Cp.On_DecSpMarker();
+        strController_Cp.On_Aw_DecSpMarker();
     }
 
     public void On_Aw_Sh_SelectShienUnit()
@@ -815,6 +1085,13 @@ public class UI_StrPhase : MonoBehaviour
     {
         UnitCard selectedUnit_Cp_tp = player_Cps[playerID_pr].bUnit_Cps[index_pr];
 
+        // check valid to show
+        if (playerID_pr != localPlayerID && !selectedUnit_Cp_tp.placedPosture)
+        {
+            return;
+        }
+
+        //
         MoveToCardDetail(playerID_pr, selectedUnit_Cp_tp);
     }
 

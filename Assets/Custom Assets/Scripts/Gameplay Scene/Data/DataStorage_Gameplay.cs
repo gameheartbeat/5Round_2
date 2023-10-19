@@ -87,6 +87,7 @@ public class ItemCardData
 
     public string effect;
 
+    public int placedPosture;
 }
 
 public enum TokenType
@@ -96,7 +97,7 @@ public enum TokenType
 
 public class TokenValue
 {
-    public TokenType type;
+    public TokenType type = new TokenType();
 
     public int count;
 }
@@ -145,10 +146,30 @@ public class RoundValue
 
     public Transform token_Tf;
 
-    public TokenValue token;
+    public TokenValue token = new TokenValue();
+
+    public int originUnitIndex, targetUnitIndex;
+
+    public UnitCard shienUnit_Cp;
 
     public List<Transform> marker_Tfs = new List<Transform>();
 
     public int spMarkerCount;
 }
 
+public class BattleInfo
+{
+    public int mihariUnitCount;
+
+    public int discardUnitCount;
+
+    public int ken;
+
+    public int ma;
+
+    public int yumi;
+
+    public int fushi;
+
+    public int ryu;
+}

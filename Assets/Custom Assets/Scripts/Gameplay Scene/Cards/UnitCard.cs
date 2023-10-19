@@ -71,6 +71,7 @@ public class UnitCard : MonoBehaviour
     [ReadOnly]
     public List<GameState_En> gameStates = new List<GameState_En>();
 
+    //
     [ReadOnly]
     public int playerID;
 
@@ -79,6 +80,12 @@ public class UnitCard : MonoBehaviour
 
     [ReadOnly]
     public UnitCardData unitCardData;
+
+    [ReadOnly]
+    public List<ItemCardData> equipItems = new List<ItemCardData>()
+    {
+        new ItemCardData(), new ItemCardData(), new ItemCardData(), new ItemCardData(), new ItemCardData()
+    };
 
     // party decision section
     [ReadOnly]
@@ -100,6 +107,13 @@ public class UnitCard : MonoBehaviour
 
     [ReadOnly]
     public int posIndex_Phases;
+
+    [ReadOnly]
+    public int maxHP, curHP, atkCorr, agiCorr, defCorr, accuracyCorr, ctCorr, normalAtkCorr, spcAtkCorr,
+        dmgCorr, indirDmgCorr, noise, shienEffectCorr, diceEffectCorr;
+
+    [ReadOnly]
+    public string atr;
 
     //-------------------------------------------------- private fields
     Vector3 originPosBeforeZoom;

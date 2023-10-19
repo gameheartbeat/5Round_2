@@ -261,7 +261,7 @@ Transform:
   m_GameObject: {fileID: 3825988856675086847}
   m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.12, y: 0.1, z: 0.15}
+  m_LocalScale: {x: 0.12, y: 0.1, z: 0.12}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 3825988857376830561}
@@ -337,6 +337,23 @@ MonoBehaviour:
   posIndex_PartyDecision: 0
   posType_SetupStand: 0
   posIndex_SetupStand: 0
+  posType_Phases: 0
+  posIndex_Phases: 0
+  maxHP: 0
+  curHP: 0
+  atkCorr: 0
+  agiCorr: 0
+  defCorr: 0
+  accuracyCorr: 0
+  ctCorr: 0
+  normalAtkCorr: 0
+  spcAtkCorr: 0
+  dmgCorr: 0
+  indirDmgCorr: 0
+  noise: 0
+  shienEffectCorr: 0
+  diceEffectCorr: 0
+  atr: 
 --- !u!114 &3534866299557137214
 MonoBehaviour:
   m_ObjectHideFlags: 0

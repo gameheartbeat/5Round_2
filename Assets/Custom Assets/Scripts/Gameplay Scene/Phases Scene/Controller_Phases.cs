@@ -18,6 +18,7 @@ public class Controller_Phases : MonoBehaviour
         InitComponentsFinished,
         StartPhaseStarted, StartPhaseFinished,
         StrPhaseStarted, StrPhaseFinished,
+        BattlePhaseStarted, BattlePhaseFinished,
     }
 
     #endregion
@@ -38,6 +39,9 @@ public class Controller_Phases : MonoBehaviour
 
     [SerializeField]
     public Controller_StrPhase strController_Cp;
+
+    [SerializeField]
+    public Controller_BattlePhase battleController_Cp;
 
     [SerializeField]
     public Transform cam_Tf;
@@ -340,6 +344,10 @@ public class Controller_Phases : MonoBehaviour
         //
         PlayStrPhase();
         yield return new WaitUntil(() => mainGameState == GameState_En.StrPhaseFinished);
+
+        //
+        PlayBattlePhase();
+        yield return new WaitUntil(() => mainGameState == GameState_En.BattlePhaseFinished);
     }
 
     //-------------------------------------------------- 
@@ -372,6 +380,30 @@ public class Controller_Phases : MonoBehaviour
 
         //
         mainGameState = GameState_En.StrPhaseFinished;
+    }
+
+    //--------------------------------------------------
+    void PlayBattlePhase()
+    {
+        StartCoroutine(Corou_PlayBattlePhase());
+    }
+
+    IEnumerator Corou_PlayBattlePhase()
+    {
+        mainGameState = GameState_En.BattlePhaseStarted;
+
+        //
+        battleController_Cp.Init();
+        yield return new WaitUntil(() => battleController_Cp.mainGameState
+            == Controller_BattlePhase.GameState_En.Inited);
+
+        //
+        battleController_Cp.PlayPhase();
+        yield return new WaitUntil(() => battleController_Cp.mainGameState
+            == Controller_BattlePhase.GameState_En.PhaseFinished);
+
+        //
+        mainGameState = GameState_En.BattlePhaseFinished;
     }
 
 }

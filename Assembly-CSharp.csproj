@@ -69,7 +69,7 @@
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark01_UGUI.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_TextSelector_A.cs" />
     <Compile Include="Assets\JMO Assets\Cartoon FX (legacy)\Demo\Assets\CFX_AutoStopLoopedEffect.cs" />
-    <Compile Include="Assets\Custom Assets\Scripts\Gameplay Scene\StatusManager.cs" />
+    <Compile Include="Assets\Custom Assets\Scripts\Gameplay Scene\Status\StatusManager.cs" />
     <Compile Include="Assets\Custom Assets\Scripts\Gameplay Scene\PartyDecision Scene\Data_PartyDecision.cs" />
     <Compile Include="Assets\Custom Assets\Scripts\Function\MouseClickDetector.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\VertexShakeA.cs" />
@@ -78,7 +78,7 @@
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark04.cs" />
     <Compile Include="Assets\Custom Assets\Scripts\Gameplay Scene\PartyDecision Scene\Background_PartyDecision.cs" />
     <Compile Include="Assets\Custom Assets\Scripts\Gameplay Scene\Phases Scene\Controller_Phases.cs" />
-    <Compile Include="Assets\Custom Assets\Scripts\Gameplay Scene\DataManager_Gameplay.cs" />
+    <Compile Include="Assets\Custom Assets\Scripts\Gameplay Scene\Data\DataManager_Gameplay.cs" />
     <Compile Include="Assets\DOTween\Modules\DOTweenModulePhysics.cs" />
     <Compile Include="Assets\Custom Assets\Scripts\Gameplay Scene\StartPrepare Scene\Player_StartPrepare.cs" />
     <Compile Include="Assets\Custom Assets\Scripts\Gameplay Scene\StartPrepare Scene\Data_StartPrepare.cs" />
@@ -105,20 +105,20 @@
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_ExampleScript_01.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TextConsoleSimulator.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\ObjectSpin.cs" />
-    <Compile Include="Assets\Custom Assets\Scripts\Gameplay Scene\StatusUI.cs" />
+    <Compile Include="Assets\Custom Assets\Scripts\Gameplay Scene\Status\StatusUI.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_TextInfoDebugTool.cs" />
     <Compile Include="Assets\Custom Assets\Scripts\Curtain.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_TextEventCheck.cs" />
-    <Compile Include="Assets\Custom Assets\Scripts\Gameplay Scene\DataStorage_Gameplay.cs" />
+    <Compile Include="Assets\Custom Assets\Scripts\Gameplay Scene\Data\DataStorage_Gameplay.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\ShaderPropAnimator.cs" />
     <Compile Include="Assets\JMO Assets\Cartoon FX (legacy)\Demo\Assets\CFX_Demo_RotateCamera.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\WarpTextExample.cs" />
-    <Compile Include="Assets\Custom Assets\Scripts\Gameplay Scene\Phases Scene\UnitUI_Phases.cs" />
+    <Compile Include="Assets\Custom Assets\Scripts\Gameplay Scene\Cards\UnitUI_Phases.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_DigitValidator.cs" />
     <Compile Include="Assets\Custom Assets\Scripts\Function\ResolutionHandler.cs" />
     <Compile Include="Assets\Custom Assets\Scripts\Gameplay Scene\Phases Scene\UIs\UI_StrPhase.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark02.cs" />
-    <Compile Include="Assets\Custom Assets\Scripts\Gameplay Scene\UnitCard.cs" />
+    <Compile Include="Assets\Custom Assets\Scripts\Gameplay Scene\Cards\UnitCard.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TextMeshSpawner.cs" />
     <Compile Include="Assets\Custom Assets\Scripts\Gameplay Scene\PartyDecision Scene\Controller_PartyDecision.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark03.cs" />
@@ -150,6 +150,10 @@
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark01.cs" />
     <Compile Include="Assets\Custom Assets\Scripts\Function\HoldingHandler.cs" />
     <Compile Include="Assets\DOTween\Modules\DOTweenModuleEPOOutline.cs" />
+    <Compile Include="Assets\Custom Assets\Scripts\Gameplay Scene\Cards\ItemCard.cs" />
+    <Compile Include="Assets\Custom Assets\Scripts\Gameplay Scene\Cards\TakaraCard.cs" />
+    <Compile Include="Assets\Custom Assets\Scripts\Gameplay Scene\Phases Scene\Controllers\Controller_BattlePhase.cs" />
+    <Compile Include="Assets\Custom Assets\Scripts\Gameplay Scene\Phases Scene\UIs\UI_BattlePhase.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\ReadOnlyAttribute\README.txt" />

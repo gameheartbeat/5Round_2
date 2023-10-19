@@ -40,6 +40,9 @@ public class Controller_StrPhase : MonoBehaviour
     public int selectedRoundIndex;
 
     [ReadOnly]
+    public TokenType selectedTokenType = new TokenType();
+
+    [ReadOnly]
     public int shienUnitIndex, shienTargetVanUnitIndex;
 
     [ReadOnly]
@@ -228,12 +231,14 @@ public class Controller_StrPhase : MonoBehaviour
     void InitComponents()
     {
         strUI_Cp.Init();
-        SetSpMarkerUI();
     }
 
     //--------------------------------------------------
     void InitVariables()
     {
+        //
+        selectedRoundIndex = -1;
+
         //
         shienUnitIndex = -1;
         shienTargetVanUnitIndex = -1;
@@ -263,8 +268,6 @@ public class Controller_StrPhase : MonoBehaviour
         strUI_Cp.MoveToPlayerboard();
 
         //
-        //mainGameState = GameState_En.PhaseFinished;
-
         yield return null;
     }
 
@@ -272,7 +275,7 @@ public class Controller_StrPhase : MonoBehaviour
     public void MoveCamToPlayerboard()
     {
         UnityEvent unityEvent = new UnityEvent();
-        unityEvent.AddListener(OnComplete_MovecamToMiharidai);
+        unityEvent.AddListener(OnComplete_MovecamToPlayerboard);
         TargetTweening.TranslateGameObject(cam_Tf, localPlayer_Cp.playerBLookPoint_Tf, unityEvent);
     }
 
@@ -305,10 +308,136 @@ public class Controller_StrPhase : MonoBehaviour
         {
             return;
         }
-        strUI_Cp.OnPbPanel_Round(index);
+
+        selectedRoundIndex = index;
+
+        // reset values
+        selectedTokenType = TokenType.Null;
+
+        shienUnitIndex = -1;
+        shienTargetVanUnitIndex = -1;
+
+        moveVanUnitIndex = -1;
+        moveRearUnitIndex = -1;
+
+        atkAllyVanUnitIndex = -1;
+        atkEnemyVanUnitIndex = -1;
+
+        // refresh values
+        RoundValue roundValue = localPlayer_Cp.roundsData[selectedRoundIndex];
+        switch (roundValue.token.type)
+        {
+            case TokenType.Shien:
+                shienUnitIndex = roundValue.originUnitIndex;
+                shienTargetVanUnitIndex = roundValue.targetUnitIndex;
+                break;
+            case TokenType.Move:
+                moveRearUnitIndex = roundValue.originUnitIndex;
+                moveVanUnitIndex = roundValue.targetUnitIndex;
+                break;
+            case TokenType.Attack:
+                atkAllyVanUnitIndex = roundValue.originUnitIndex;
+                atkEnemyVanUnitIndex = roundValue.targetUnitIndex;
+                break;
+        }
 
         //
-        selectedRoundIndex = index;
+        strUI_Cp.MoveToActionWindow(index);
+    }
+
+    //-------------------------------------------------- On ActionWindow panel
+    void UpdateActionWindow(TokenType tokenType_pr)
+    {
+        selectedTokenType = tokenType_pr;
+
+        // reset action window
+        switch (selectedTokenType)
+        {
+            case TokenType.Shien:
+                UpdateShienToken();
+                break;
+            case TokenType.Move:
+                UpdateMoveToken();
+                break;
+            case TokenType.Attack:
+                UpdateAtkToken();
+                break;
+        }
+    }
+
+    void UpdateShienToken()
+    {
+        if (shienUnitIndex == -1 || shienTargetVanUnitIndex == -1)
+        {
+            return;
+        }
+
+        UnityEvent unityEvent = new UnityEvent();
+        unityEvent.AddListener(OnComplete_ResetToken);
+        localPlayer_Cp.ResetRoundToken(selectedRoundIndex, unityEvent);
+    }
+
+    void OnComplete_ResetToken()
+    {
+        localPlayer_Cp.SetShienToken(selectedRoundIndex, shienUnitIndex, shienTargetVanUnitIndex);
+
+        //
+        strUI_Cp.RefreshAwMihariUnits();
+    }
+
+    void UpdateMoveToken()
+    {
+        if (moveVanUnitIndex == -1 || moveRearUnitIndex == -1)
+        {
+            return;
+        }
+
+        UnityEvent unityEvent = new UnityEvent();
+        localPlayer_Cp.ResetRoundToken(selectedRoundIndex, unityEvent);
+
+        localPlayer_Cp.SetMoveToken(selectedRoundIndex, moveRearUnitIndex, moveVanUnitIndex);
+    }
+
+    void UpdateAtkToken()
+    {
+        if (atkAllyVanUnitIndex == -1 || atkEnemyVanUnitIndex == -1)
+        {
+            return;
+        }
+
+        UnityEvent unityEvent = new UnityEvent();
+        localPlayer_Cp.ResetRoundToken(selectedRoundIndex, unityEvent);
+
+        localPlayer_Cp.SetAtkToken(selectedRoundIndex, atkAllyVanUnitIndex, atkEnemyVanUnitIndex);
+    }
+
+    void SetActionWindowAtkArrow()
+    {
+        if (atkAllyVanUnitIndex == -1 || atkEnemyVanUnitIndex == -1)
+        {
+            strUI_Cp.aw_at_arrow_RT.gameObject.SetActive(false);
+            return;
+        }
+
+        //strUI_Cp.aw_at_arrow_RT.gameObject.SetActive(true);
+
+        //RectTransform fromArrowPoint_RT_tp = atkAllyVanUnitIndex == 0 ? strUI_Cp.aw_at_allyVan1ArrowPoint_RT
+        //    : strUI_Cp.aw_at_allyVan2ArrowPoint_RT;
+        //RectTransform toArrowPoint_RT_tp = atkEnemyVanUnitIndex == 0 ? strUI_Cp.aw_at_enemyVan1ArrowPoint_RT
+        //    : strUI_Cp.aw_at_enemyVan2ArrorPoint_RT;
+        //RectTransform arrow_RT_tp = strUI_Cp.aw_at_arrow_RT;
+
+        //// Calculate the direction from 'from' to 'to' points
+        //Vector2 dir = toArrowPoint_RT_tp.anchoredPosition - fromArrowPoint_RT_tp.anchoredPosition;
+
+        //// Set the position of the arrow in the middle of the 'from' and 'to' points
+        //arrow_RT_tp.anchoredPosition = (fromArrowPoint_RT_tp.anchoredPosition + toArrowPoint_RT_tp.anchoredPosition) / 2f;
+
+        //// Calculate the rotation angle based on the direction
+        //float rotAngle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
+
+        //// Set the rotation of the arrow
+        //arrow_RT_tp.rotation = Quaternion.Euler(0f, 0f, rotAngle);
     }
 
     //////////////////////////////////////////////////////////////////////
@@ -318,46 +447,27 @@ public class Controller_StrPhase : MonoBehaviour
     //////////////////////////////////////////////////////////////////////
     #region EventsFromUI
 
-    //-------------------------------------------------- Handle sp markers on playerboard
-    public void On_IncSpMarker()
+    //-------------------------------------------------- On Playerboard
+    public void On_Pb_ToBattlePhase()
     {
-        localPlayer_Cp.IncSpMarker(selectedRoundIndex);
-
-        SetSpMarkerUI();
-    }
-
-    public void On_DecSpMarker()
-    {
-        localPlayer_Cp.DecSpMarker(selectedRoundIndex);
-
-        SetSpMarkerUI();
-    }
-
-    void SetSpMarkerUI()
-    {
-        strUI_Cp.SetSpMarkerText(localPlayer_Cp.markersData.usedSpMarkers.count,
-            localPlayer_Cp.markersData.totalSpMarkers.count);
-
-        if (localPlayer_Cp.markersData.usedSpMarkers.count == 0)
-        {
-            strUI_Cp.aw_gu_decBtn_Cp.interactable = false;
-        }
-        else
-        {
-            strUI_Cp.aw_gu_decBtn_Cp.interactable = true;
-        }
-
-        if (localPlayer_Cp.markersData.usedSpMarkers.count == localPlayer_Cp.markersData.totalSpMarkers.count)
-        {
-            strUI_Cp.aw_gu_incBtn_Cp.interactable = false;
-        }
-        else
-        {
-            strUI_Cp.aw_gu_incBtn_Cp.interactable = true;
-        }
+        mainGameState = GameState_En.PhaseFinished;
     }
 
     //-------------------------------------------------- On ActionWindow
+    public void On_Aw_IncSpMarker()
+    {
+        localPlayer_Cp.IncSpMarker(selectedRoundIndex);
+
+        strUI_Cp.RefreshAwGuardPanel();
+    }
+
+    public void On_Aw_DecSpMarker()
+    {
+        localPlayer_Cp.DecSpMarker(selectedRoundIndex);
+
+        strUI_Cp.RefreshAwGuardPanel();
+    }
+
     public void On_Aw_ShienUnitSelected(int index)
     {
         shienUnitIndex = index;
@@ -378,7 +488,7 @@ public class Controller_StrPhase : MonoBehaviour
         shienUnit_Cp = null;
 
         //
-        strUI_Cp.aw_sh_unitText_Cp.text = "ユニット : " + "No selected";
+        strUI_Cp.aw_sh_unitText_Cp.text = "ユニット : " + "None";
         strUI_Cp.aw_sh_shienText_Cp.text = string.Empty;
         strUI_Cp.aw_sh_descText_Cp.text = string.Empty;
     }
@@ -485,16 +595,16 @@ public class Controller_StrPhase : MonoBehaviour
         }
 
         //
-        strUI_Cp.aw_at_allyVan1_GO.SetActive(false);
-        strUI_Cp.aw_at_allyVan2_GO.SetActive(false);
+        strUI_Cp.aw_at_allyVanBgd1_GO.SetActive(false);
+        strUI_Cp.aw_at_allyVanBgd2_GO.SetActive(false);
 
         if (atkAllyVanUnitIndex == 0)
         {
-            strUI_Cp.aw_at_allyVan1_GO.SetActive(true);
+            strUI_Cp.aw_at_allyVanBgd1_GO.SetActive(true);
         }
         else if (atkAllyVanUnitIndex == 1)
         {
-            strUI_Cp.aw_at_allyVan2_GO.SetActive(true);
+            strUI_Cp.aw_at_allyVanBgd2_GO.SetActive(true);
         }
 
         //
@@ -513,6 +623,9 @@ public class Controller_StrPhase : MonoBehaviour
         {
             strUI_Cp.SetAwAtAtkCondText(true);
         }
+
+        // place arrow image
+        SetActionWindowAtkArrow();
     }
 
     public void On_Aw_EnemyVanUnitSelected(int index)
@@ -527,25 +640,28 @@ public class Controller_StrPhase : MonoBehaviour
         }
 
         //
-        strUI_Cp.aw_at_enemyVan1_GO.SetActive(false);
-        strUI_Cp.aw_at_enemyVan2_GO.SetActive(false);
+        strUI_Cp.aw_at_enemyVanBgd1_GO.SetActive(false);
+        strUI_Cp.aw_at_enemyVanBgd2_GO.SetActive(false);
 
         if (atkEnemyVanUnitIndex == 0)
         {
-            strUI_Cp.aw_at_enemyVan1_GO.SetActive(true);
+            strUI_Cp.aw_at_enemyVanBgd1_GO.SetActive(true);
         }
         else if (atkEnemyVanUnitIndex == 1)
         {
-            strUI_Cp.aw_at_enemyVan2_GO.SetActive(true);
+            strUI_Cp.aw_at_enemyVanBgd2_GO.SetActive(true);
         }
 
         //
         strUI_Cp.SetAwAtDescription(atkAllyVanUnitIndex, atkEnemyVanUnitIndex);
+
+        // place arrow image
+        SetActionWindowAtkArrow();
     }
 
     public void On_Aw_Update(TokenType tokenType_pr)
     {
-
+        UpdateActionWindow(tokenType_pr);
     }
 
     #endregion
