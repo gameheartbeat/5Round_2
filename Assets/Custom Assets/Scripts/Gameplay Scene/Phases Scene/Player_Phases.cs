@@ -56,6 +56,21 @@ public class Player_Phases : MonoBehaviour
     [SerializeField]
     Transform shienUnitPointsGroup_Tf;
 
+    [SerializeField]
+    public Transform playerB_Tf;
+
+    [SerializeField]
+    public Transform miharidai_Tf;
+
+    [SerializeField]
+    public Transform pbBpPoint_Tf;
+
+    [SerializeField]
+    public Transform mdBpPoint_Tf;
+
+    [SerializeField]
+    public Transform camBpPoint_Tf;
+
     //-------------------------------------------------- public fields
     [ReadOnly]
     public List<GameState_En> gameStates = new List<GameState_En>();
@@ -365,7 +380,7 @@ public class Player_Phases : MonoBehaviour
 
             int index = i;
             UnityEvent unityEvent = new UnityEvent();
-            unityEvent.AddListener(() => OnClickRound(index));
+            unityEvent.AddListener(() => OnClickRoundOnPlayerboard(index));
             clickDetector_Cp_tp.onClicked = unityEvent;
         }
     }
@@ -465,7 +480,7 @@ public class Player_Phases : MonoBehaviour
         SetSpMarker(roundIndex_pr, -1 * decCount_pr);
     }
 
-    void SetSpMarker(int roundIndex_pr, int changeAmount_pr)
+    public void SetSpMarker(int roundIndex_pr, int changeAmount_pr)
     {
         //
         roundsData[roundIndex_pr].spMarkerCount = Mathf.Clamp(
@@ -534,6 +549,9 @@ public class Player_Phases : MonoBehaviour
         TargetTweening.TranslateGameObject(roundValue.shienUnit_Cp.transform, shienUnitPoint_Tfs[roundIndex_pr],
             unityEvent);
         mUnit_Cps[shienUnitIndex_pr] = null;
+
+        // set tokens data
+        tokensData.usedShienToken.count++;
     }
 
     public void SetMoveToken(int roundIndex_pr, int originIndex_pr, int targetIndex_pr)
@@ -571,6 +589,9 @@ public class Player_Phases : MonoBehaviour
             token_Pf_tp = move3Token_Pf;
         }
         roundValue.token_Tf = Instantiate(token_Pf_tp, tokenPoint_Tf_tp).transform;
+
+        // set tokens data
+        tokensData.usedMoveToken.count++;
     }
 
     public void SetAtkToken(int roundIndex_pr, int originIndex_pr, int targetIndex_pr)
@@ -604,6 +625,9 @@ public class Player_Phases : MonoBehaviour
             token_Pf_tp = atk2Token_Pf;
         }
         roundValue.token_Tf = Instantiate(token_Pf_tp, tokenPoint_Tf_tp).transform;
+
+        // set tokens data
+        tokensData.usedAtkToken.count++;
     }
 
     //-------------------------------------------------- Reset round tokens
@@ -631,6 +655,17 @@ public class Player_Phases : MonoBehaviour
             mUnit_Cps[mihariUnitIndex_pr] = roundValue.shienUnit_Cp;
 
             roundValue.shienUnit_Cp = null;
+
+            // set shien token count
+            tokensData.usedShienToken.count--;
+        }
+        else if (roundValue.token.type == TokenType.Move)
+        {
+            tokensData.usedMoveToken.count--;
+        }
+        else if (roundValue.token.type == TokenType.Attack)
+        {
+            tokensData.usedAtkToken.count--;
         }
 
         // reset token variables
@@ -638,6 +673,25 @@ public class Player_Phases : MonoBehaviour
         roundValue.token.count = 0;
         roundValue.originUnitIndex = 0;
         roundValue.targetUnitIndex = 0;
+    }
+
+    //-------------------------------------------------- Play round
+    public void PlayRound(int roundIndex_pr)
+    {
+        RoundValue roundValue = roundsData[roundIndex_pr];
+
+        switch (roundValue.action)
+        {
+            case ActionType.Guard:
+                //
+                break;
+        }
+    }
+
+    //--------------------------------------------------
+    void PlayGuardAction(int roundValue)
+    {
+
     }
 
     //////////////////////////////////////////////////////////////////////
@@ -648,9 +702,12 @@ public class Player_Phases : MonoBehaviour
     #region OnEvents
 
     //--------------------------------------------------
-    void OnClickRound(int index)
+    void OnClickRoundOnPlayerboard(int index)
     {
-        controller_Cp.strController_Cp.On_PbRoundPanel(index);
+        if (controller_Cp.mainGameState == Controller_Phases.GameState_En.StrPhaseStarted)
+        {
+            controller_Cp.strController_Cp.On_PbRoundPanel(index);
+        }
     }
 
     #endregion

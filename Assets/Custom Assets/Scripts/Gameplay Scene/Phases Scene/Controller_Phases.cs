@@ -44,6 +44,9 @@ public class Controller_Phases : MonoBehaviour
     public Controller_BattlePhase battleController_Cp;
 
     [SerializeField]
+    public StatusManager statusManager_Cp;
+
+    [SerializeField]
     public Transform cam_Tf;
 
     //-------------------------------------------------- public fields
@@ -358,6 +361,9 @@ public class Controller_Phases : MonoBehaviour
 
     IEnumerator Corou_PlayStartPhase()
     {
+        mainGameState = GameState_En.StartPhaseStarted;
+
+        //
         startController_Cp.PlayPhase();
         yield return new WaitUntil(() => startController_Cp.mainGameState
             == Controller_StartPhase.GameState_En.PhaseFinished);
@@ -374,6 +380,9 @@ public class Controller_Phases : MonoBehaviour
 
     IEnumerator Corou_PlayStrPhase()
     {
+        mainGameState = GameState_En.StrPhaseStarted;
+
+        //
         strController_Cp.PlayPhase();
         yield return new WaitUntil(() => strController_Cp.mainGameState
             == Controller_StrPhase.GameState_En.PhaseFinished);

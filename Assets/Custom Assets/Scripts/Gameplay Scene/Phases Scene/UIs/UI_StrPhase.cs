@@ -51,6 +51,9 @@ public class UI_StrPhase : MonoBehaviour
 
     // action window panel
     [SerializeField]
+    public Button aw_guardBtn_Cp, aw_shienBtn_Cp, aw_moveBtn_Cp, aw_atkBtn_Cp;
+
+    [SerializeField]
     public GameObject aw_guardPanel_GO, aw_shienPanel_GO, aw_movePanel_GO, aw_atkPanel_GO;
 
     [SerializeField]
@@ -336,11 +339,7 @@ public class UI_StrPhase : MonoBehaviour
     void InitVariables()
     {
         //
-        playerBPanel_GO.SetActive(false);
-        actionWPanel_GO.SetActive(false);
-        miharidaiPanel_GO.SetActive(false);
-        battleBPanel_GO.SetActive(false);
-        cardDetailPanel_GO.SetActive(false);
+        DisableAllPanel();
 
         //
         InitActionWindowPanel();
@@ -423,11 +422,32 @@ public class UI_StrPhase : MonoBehaviour
 
     #endregion
 
+    //-------------------------------------------------- Disable all UI panel
+    public void DisableAllPanel()
+    {
+        playerBPanel_GO.SetActive(false);
+        actionWPanel_GO.SetActive(false);
+        miharidaiPanel_GO.SetActive(false);
+        battleBPanel_GO.SetActive(false);
+        cardDetailPanel_GO.SetActive(false);
+    }
+
     //-------------------------------------------------- Reset action window UI panel
     public void RefreshAwShienPanel()
     {
         RoundValue roundValue = localPlayer_Cp.roundsData[strController_Cp.selectedRoundIndex];
 
+        // check token count
+        aw_shienBtn_Cp.interactable = true;
+        if (localPlayer_Cp.tokensData.usedShienToken.count == localPlayer_Cp.tokensData.totalShienToken.count)
+        {
+            if (localPlayer_Cp.roundsData[strController_Cp.selectedRoundIndex].token.type != TokenType.Shien)
+            {
+                aw_shienBtn_Cp.interactable = false;
+            }
+        }
+
+        //
         if (roundValue.token.type != TokenType.Shien)
         {
             aw_sh_descText_Cp.text = string.Empty;
@@ -461,6 +481,17 @@ public class UI_StrPhase : MonoBehaviour
     {
         RoundValue roundValue = localPlayer_Cp.roundsData[strController_Cp.selectedRoundIndex];
 
+        // check token count
+        if (localPlayer_Cp.tokensData.usedMoveToken.count == localPlayer_Cp.tokensData.totalMoveToken.count)
+        {
+            aw_moveBtn_Cp.interactable = false;
+        }
+        else
+        {
+            aw_moveBtn_Cp.interactable = true;
+        }
+
+        //
         if (roundValue.token.type != TokenType.Move)
         {
             aw_mo_descText_Cp.text = string.Empty;
@@ -513,6 +544,17 @@ public class UI_StrPhase : MonoBehaviour
     {
         RoundValue roundValue = localPlayer_Cp.roundsData[strController_Cp.selectedRoundIndex];
 
+        // check token count
+        if (localPlayer_Cp.tokensData.usedAtkToken.count == localPlayer_Cp.tokensData.totalAtkToken.count)
+        {
+            aw_atkBtn_Cp.interactable = false;
+        }
+        else
+        {
+            aw_atkBtn_Cp.interactable = true;
+        }
+
+        //
         if (roundValue.token.type != TokenType.Attack)
         {
             aw_at_descText_Cp.text = string.Empty;
@@ -570,7 +612,7 @@ public class UI_StrPhase : MonoBehaviour
         aw_gu_spMarkerText_Cp.text = localPlayer_Cp.markersData.usedSpMarkers.count
             + "/" + localPlayer_Cp.markersData.totalSpMarkers.count + " 使用";
 
-        //
+        // set active inc/dec button
         if (localPlayer_Cp.markersData.usedSpMarkers.count == 0)
         {
             aw_gu_decBtn_Cp.interactable = false;
@@ -801,7 +843,6 @@ public class UI_StrPhase : MonoBehaviour
     public void MoveToActionWindow(int index)
     {
         AddGameStates(GameState_En.OnActionWindowPanel);
-        SetActivePanel(GameState_En.OnActionWindowPanel, true);
 
         //
         DisableActionWindowActionPanels();
@@ -812,6 +853,9 @@ public class UI_StrPhase : MonoBehaviour
         RefreshAwShienPanel();
         RefreshAwMovePanel();
         RefreshAwAtkPanel();
+
+        //
+        SetActivePanel(GameState_En.OnActionWindowPanel, true);
     }
 
     void MoveToMiharidai()

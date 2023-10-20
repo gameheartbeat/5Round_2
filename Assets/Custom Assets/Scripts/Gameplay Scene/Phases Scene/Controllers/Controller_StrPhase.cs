@@ -58,7 +58,7 @@ public class Controller_StrPhase : MonoBehaviour
 
     List<Player_Phases> player_Cps = new List<Player_Phases>();
 
-    Player_Phases localPlayer_Cp, otherPlayer_Cp;
+    Player_Phases localPlayer_Cp, otherPlayer_Cp, comPlayer_Cp;
 
     Transform cam_Tf;
 
@@ -224,6 +224,8 @@ public class Controller_StrPhase : MonoBehaviour
 
         otherPlayer_Cp = controller_Cp.otherPlayer_Cp;
 
+        comPlayer_Cp = controller_Cp.comPlayer_Cp;
+
         cam_Tf = controller_Cp.cam_Tf;
     }
 
@@ -266,6 +268,9 @@ public class Controller_StrPhase : MonoBehaviour
 
         //
         strUI_Cp.MoveToPlayerboard();
+
+        //
+        SimulateComPlayer();
 
         //
         yield return null;
@@ -440,6 +445,14 @@ public class Controller_StrPhase : MonoBehaviour
         //arrow_RT_tp.rotation = Quaternion.Euler(0f, 0f, rotAngle);
     }
 
+    //--------------------------------------------------
+    void MoveToBattlePhase()
+    {
+        strUI_Cp.DisableAllPanel();
+
+        mainGameState = GameState_En.PhaseFinished;
+    }
+
     //////////////////////////////////////////////////////////////////////
     /// <summary>
     /// Events from UI
@@ -450,7 +463,7 @@ public class Controller_StrPhase : MonoBehaviour
     //-------------------------------------------------- On Playerboard
     public void On_Pb_ToBattlePhase()
     {
-        mainGameState = GameState_En.PhaseFinished;
+        MoveToBattlePhase();
     }
 
     //-------------------------------------------------- On ActionWindow
@@ -665,4 +678,167 @@ public class Controller_StrPhase : MonoBehaviour
     }
 
     #endregion
+
+    //////////////////////////////////////////////////////////////////////
+    /// <summary>
+    /// Simulate computer player
+    /// </summary>
+    //////////////////////////////////////////////////////////////////////
+    #region SimuateComPlayer
+
+    //--------------------------------------------------
+    public void SimulateComPlayer()
+    {
+        StartCoroutine(Corou_SimulateComPlayer());
+    }
+
+    IEnumerator Corou_SimulateComPlayer()
+    {
+        //
+        while (comPlayer_Cp.markersData.usedSpMarkers.count < comPlayer_Cp.markersData.totalSpMarkers.count)
+        {
+            int randRoundIndex = Random.Range(0, comPlayer_Cp.roundsData.Count);
+
+            Com_SetSpMarkerToRound(randRoundIndex);
+        }
+
+        //
+        for (int i = 0; i < comPlayer_Cp.roundsData.Count; i++)
+        {
+            bool setSuccessFlag = false;
+
+            while (!setSuccessFlag)
+            {
+                //
+                int randIndex = Random.Range(0, 3);
+                switch (randIndex)
+                {
+                    case 0:
+                        setSuccessFlag = Com_SetShienTokenToRound(i);
+                        break;
+                    case 1:
+                        setSuccessFlag = Com_SetMoveTokenToRound(i);
+                        break;
+                    case 2:
+                        setSuccessFlag = Com_SetAtkTokenToRound(i);
+                        break;
+                }
+
+                //
+                yield return new WaitForSeconds(1f);
+
+                // check token or marker are exist
+                if (comPlayer_Cp.tokensData.usedShienToken.count < comPlayer_Cp.tokensData.totalShienToken.count)
+                {
+                    continue;
+                }
+                if (comPlayer_Cp.tokensData.usedMoveToken.count < comPlayer_Cp.tokensData.totalMoveToken.count)
+                {
+                    continue;
+                }
+                if (comPlayer_Cp.tokensData.usedAtkToken.count < comPlayer_Cp.tokensData.totalAtkToken.count)
+                {
+                    continue;
+                }
+            }
+
+            yield return new WaitForSeconds(1f);
+        }
+    }
+
+    //--------------------------------------------------
+    bool Com_SetSpMarkerToRound(int roundIndex_pr)
+    {
+        bool result = true;
+
+        int restSpMarkersCount = comPlayer_Cp.markersData.totalSpMarkers.count -
+            comPlayer_Cp.markersData.usedSpMarkers.count;
+        if (restSpMarkersCount == 0)
+        {
+            return false;
+        }
+
+        int randCount = Random.Range(1, restSpMarkersCount + 1);
+
+        comPlayer_Cp.SetSpMarker(roundIndex_pr, randCount);
+
+        return result;
+    }
+
+    //--------------------------------------------------
+    bool Com_SetShienTokenToRound(int roundIndex_pr)
+    {
+        bool result = true;
+
+        //
+        int restShienTokenCount = comPlayer_Cp.tokensData.totalShienToken.count -
+            comPlayer_Cp.tokensData.usedShienToken.count;
+        if (restShienTokenCount == 0)
+        {
+            return false;
+        }
+
+        //
+        int randShienUnitIndex = -1;
+        do
+        {
+            randShienUnitIndex = Random.Range(0, comPlayer_Cp.mUnit_Cps.Count);
+        }
+        while (comPlayer_Cp.mUnit_Cps[randShienUnitIndex] == null);
+
+        //
+        int randShienTargetUnitIndex_tp = Random.Range(0, 2);
+
+        comPlayer_Cp.SetShienToken(roundIndex_pr, randShienUnitIndex, randShienTargetUnitIndex_tp);
+
+        return result;
+    }
+
+    //--------------------------------------------------
+    bool Com_SetMoveTokenToRound(int roundIndex_pr)
+    {
+        bool result = true;
+
+        //
+        int restMoveTokenCount = comPlayer_Cp.tokensData.totalMoveToken.count -
+            comPlayer_Cp.tokensData.usedMoveToken.count;
+        if (restMoveTokenCount == 0)
+        {
+            return false;
+        }
+
+        //
+        int randMoveRearUnitIndex = Random.Range(0, 3);
+        int randMoveVanUnitIndex = Random.Range(0, 2);
+
+        comPlayer_Cp.SetMoveToken(roundIndex_pr, randMoveRearUnitIndex, randMoveVanUnitIndex);
+
+        //
+        return result;
+    }
+
+    //--------------------------------------------------
+    bool Com_SetAtkTokenToRound(int roundIndex_pr)
+    {
+        bool result = true;
+
+        //
+        int restAtkTokenCount = comPlayer_Cp.tokensData.totalAtkToken.count -
+            comPlayer_Cp.tokensData.usedAtkToken.count;
+        if (restAtkTokenCount == 0)
+        {
+            return false;
+        }
+
+        //
+        int randAtkAllyUnitIndex = Random.Range(0, 2);
+        int randAtkEnemyUnitIndex = Random.Range(0, 2);
+
+        comPlayer_Cp.SetAtkToken(roundIndex_pr, randAtkAllyUnitIndex, randAtkEnemyUnitIndex);
+
+        return result;
+    }
+
+    #endregion
+
 }

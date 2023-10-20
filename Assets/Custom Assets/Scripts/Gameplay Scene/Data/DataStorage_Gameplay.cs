@@ -112,6 +112,11 @@ public class TokenData
     public TokenValue totalAtkToken = new TokenValue();
 }
 
+public enum ActionType
+{
+    Null, Guard, Shien, Move, Attack
+}
+
 public enum MarkerType
 {
     Null, SP, AP, Gold, Turn
@@ -155,6 +160,35 @@ public class RoundValue
     public List<Transform> marker_Tfs = new List<Transform>();
 
     public int spMarkerCount;
+
+    public ActionType action
+    {
+        get
+        {
+            ActionType value = new ActionType();
+
+            switch (token.type)
+            {
+                case TokenType.Shien:
+                    value = ActionType.Shien;
+                    break;
+                case TokenType.Move:
+                    value = ActionType.Move;
+                    break;
+                case TokenType.Attack:
+                    value = ActionType.Attack;
+                    break;
+                case TokenType.Null:
+                    if (spMarkerCount > 0)
+                    {
+                        value = ActionType.Guard;
+                    }
+                    break;
+            }
+
+            return value;
+        }
+    }
 }
 
 public class BattleInfo

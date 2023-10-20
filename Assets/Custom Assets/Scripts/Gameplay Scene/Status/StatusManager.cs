@@ -36,7 +36,7 @@ public class StatusManager : MonoBehaviour
 
     //-------------------------------------------------- serialize fields
     [SerializeField]
-    StatusUI statusUI;
+    public StatusUI statusUI;
 
     [SerializeField]
     int maxLeftTime = 100;
